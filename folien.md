@@ -7,7 +7,7 @@ Einführung
 
 <!-- Adrian -->
 
-Cook-Levin Theorem
+Cook-Levin Theorem {#Cook-Levin}
 ==================
 
 <!-- Florian -->
@@ -95,5 +95,16 @@ Probleme zwischen P und NP
 Umgang mit NP-vollständigen Problemen
 =====================================
 
-<!-- Hitchhiker: Don't Panic! -->
+----
+
+![http://everfalling.deviantart.com/art/DON-T-PANIC-15975789](img/dont_panic.png)
+
+
+Umgang mit NP-vollständigen Problemen
+-------------------------------------
+
+* Exisitieren vielleicht gute Näherungslösungen?
+* Ist der Worst-Case wirklich wahrscheinlich?
+* Gibt es andere Modelierungen in P?
+* Ist $n$ wirklich so groß, dass NP-Vollständigkeit ein Problem darstellt?
 
