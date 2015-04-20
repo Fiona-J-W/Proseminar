@@ -21,7 +21,9 @@ Reduktion SAT auf 3SAT
 Wichtige NP-vollständige Probleme
 =================================
 
-<!-- XKCD: Restaurant -->
+----
+
+![CC-BY-NC 2.5, Randall Munroe, https://xkcd.com/287/](img/xkcd_np_complete_big.png)
 
 INDSET
 ------
