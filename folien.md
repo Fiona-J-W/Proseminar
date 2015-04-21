@@ -77,6 +77,14 @@ Die Klasse NP (alternativ)
 * ursprüngliche Definition, deswegen auch NP (nondeterministic polynomial time)
 * beide Definitionen äquivalent, da die Sequenz von Entscheidungen die zu $q_{accept}$ führt als Verifizierer betrachtet werden kann
 
+Die Klasse coNP
+---------------
+
+* alle Sprachen, deren Komplement in NP liegt
+* NICHT das Komplement zu NP
+* Beispiel: Kontradiktion
+	
+
 Reduktion
 ---------
 
@@ -129,6 +137,12 @@ INDSET
 
 0/1 IPROG
 ---------
+
+* gegeben: $m$ lineare Ungleichungen über $n$ Variablen
+* gesucht: eine Lösung für das System wobei die Variablen nur 0 oder 1 annehmen können
+* in NP: die Belegung der Variablen kann als Zertifikat gesehen werden
+* NP-vollständig: SAT $\preceq$ 0/1 IPROG, da jede Klausel als Ungleichung aufgefasst werden kann
+	* $u_1 \vee \overline{u_2} \vee \overline{u_3}$ kann ausgedrückt werden durch $u_1 + (1 - u_2) + (1 - u_3) \geq 1$
 
 <!-- Adrian -->
 
