@@ -5,7 +5,104 @@
 Einführung
 ==========
 
-<!-- Adrian -->
+Turingmaschine
+--------------
+
+* mathematische Abstraktion eines Computers
+* besteht aus
+	* Steuerwerk
+	* unendlich langes Steuerband
+	* Lese- und Schreibkopf
+	
+Turingmaschine
+--------------
+	
+* pro Schritt wird
+	* ein Zeichen gelesen
+	* ein Zeichen geschrieben
+	* eine Bewegung ausgeführt
+* jeder Schritt ist nur abhängig von
+	* aktuellem Zeichen auf dem Band
+	* aktuellem Zustand der TM
+* eine TM hat endlich viele Zustände
+* man kann Zustände als Endzustände definieren
+
+Turingmaschine formal
+---------------------
+
+* formal besteht eine TM aus
+	* $Q$, die endlichen Zustandsmenge
+	* $\Sigma$, das endlichen Eingabealphabet
+	* $\Gamma$, das endliche Bandalphabet und es gilt $\Sigma \subset \Gamma$
+	* $\delta\colon (Q \setminus \{q_f\})\times \Gamma \to Q \times \Gamma \times \{L, 0, R\}$ ist die (partielle) Überführungsfunktion
+	* $q_0 \in Q$ ist der Anfangszustand
+	* $\square \in \Gamma\setminus\Sigma$ steht für das leere Feld
+	* $q_{accept} \in Q$ ist der akzeptierende Zustand
+
+Turingmaschine (nichtdeterministisch)
+-------------------------------------
+
+* ähnlich der deterministischen TM
+* NDTM hat allerdings zwei Übergangsfunktionen $\delta_0$ und $\delta_1$
+* endet eine Sequenz von Entscheidungen in $q_{accept}$ gilt die Eingabe als akzeptiert
+* im Gegensatz zur deterministischen TM nicht ohne Weiteres realisierbar
+	
+Die Klasse P
+------------
+
+* enthält alle Entscheidungsprobleme die in Polynomialzeit von einer TM lösbar sind
+* Probleme in P gelten als praktisch lösbar
+* Beispiele sind:
+	* Lineare Programmierung/Optimierung
+	* PRIMES (AKS-Primzahltest)
+	* HORNSAT
+	
+
+Die Klasse NP (formal)
+----------------------
+
+Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$ sowie eine in Polynomialzeit laufende TM $M$, den sogenannten Verifizierer für $L$, gibt, sodass für jedes $x \in \{0, 1\}^*$ gilt:
+\
+$x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$ sodass $M(x, u) = 1$
+\
+In diesem Fall nennt man $u$ ein Zertifikat für $x$.
+
+Die Klasse NP (alternativ)
+--------------------------
+
+* alle Entscheidungsprobleme die von einer NDTM $M$ in Polynomialzeit gelöst werden
+* $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt, sodass $M$ in $q_{accept}$ hält.
+	* es gilt in diesem Fall $M(x) = 1$
+* gibt es keine Sequenz für die $M$ in $q_{accept}$ gilt $M(x) = 0$
+* ursprüngliche Definition, deswegen auch NP (nondeterministic polynomial time)
+* beide Definitionen äquivalent, da die Sequenz von Entscheidungen die zu $q_{accept}$ führt als Verifizierer betrachtet werden kann
+
+Reduktion
+---------
+
+* $A$ heißt reduzierbar auf $B$, wenn es einen Algorithmus gibt, der aus jedem Problem aus $A$ in Polynomialzeit ein Problem aus $B$ macht
+* gibt es einen Algorithmus zur Lösung von $B$ und gilt $A \preceq B$, so kann dieser auch $A$ lösen
+* man sagt $B$ ist mindestens so schwer wie $A$
+
+NP-Vollständigkeit
+------------------
+
+* gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
+* liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
+* um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein NP-schweres $L$ zu zeigen
+
+<!-- 
+Adrian, Quellen bisher
+* http://de.wikipedia.org/wiki/P_%28Komplexit%C3%A4tsklasse%29
+* http://de.wikipedia.org/wiki/Turingmaschine
+* http://de.wikipedia.org/wiki/Polynomialzeit
+* https://complexityzoo.uwaterloo.ca/Complexity_Zoo:P#p
+* http://de.wikipedia.org/wiki/Lineare_Optimierung
+* http://de.wikipedia.org/wiki/AKS-Primzahltest
+* http://de.wikipedia.org/wiki/Horn-Formel
+* http://de.wikipedia.org/wiki/Reduktion_%28Theoretische_Informatik%29
+
+-->
 
 Cook-Levin Theorem {#Cook-Levin}
 ==================
