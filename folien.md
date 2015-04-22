@@ -98,6 +98,7 @@ NP-Vollständigkeit
 * gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
 * liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
 * um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein NP-schweres $L$ zu zeigen
+* ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $A'$ logischerweise coNP-schwer
 
 <!-- 
 Adrian, Quellen bisher
@@ -109,6 +110,9 @@ Adrian, Quellen bisher
 * http://de.wikipedia.org/wiki/AKS-Primzahltest
 * http://de.wikipedia.org/wiki/Horn-Formel
 * http://de.wikipedia.org/wiki/Reduktion_%28Theoretische_Informatik%29
+* http://en.wikipedia.org/wiki/Co-NP
+* https://complexityzoo.uwaterloo.ca/Complexity_Zoo:C#conp
+* https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
 
 -->
 
@@ -221,7 +225,31 @@ P $\neq$ NP
 <!-- Florian -->
 
 coNP $\neq$ NP
------------
+--------------
+
+* bisher wurde noch für kein coNP-schweres Problem ein polynomielles Zertifikat gefunden
+* es konnte noch für kein NP-schweres Problem nachgewiesen werden, dass es in coNP liegt
+* es konnte noch für kein Problem aus NP $\cap$ coNP NP-schwere bzw. coNP-schwere nachgewiesen werden
+
+Resolution als Indiz für coNP $\neq$ NP
+---------------------------------------
+
+* Resolution prüft ob eine KNF eine Kontradiktion ist
+* wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine Negierung $\overline{u}$ in $C_2$ vorkommen
+* bild eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
+* $C_1 = (x \vee \overline{y} \vee z)$ und $C_2 = (y \vee z)$ werden zu $C_3 = (x \vee z)$
+* es gilt $C_3 = false \Rightarrow C_1 \wedge C_2 = false$
+* kann man eine leere Klausel herleiten ist die Formel eine Kontradiktion
+
+Resolution Beispiel
+---------------------------------------
+
+<!-- evt ein ähnliches Bild selber machen -->
+![https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/res-beweis.gif](img/res-beweis.png)
+
+Resolution als Indiz für coNP $\neq$ NP
+---------------------------------------
+
 
 <!-- Adrian -->
 
