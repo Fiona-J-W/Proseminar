@@ -204,7 +204,7 @@ coNP $\neq$ NP
 Resolution als Indiz für coNP $\neq$ NP
 ---------------------------------------
 
-* Resolution prüft ob eine CNF eine Kontradiktion ist
+* Resolution prüft ob eine KNF eine Kontradiktion ist
 * wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine Negierung $\overline{u}$ in $C_2$ vorkommen
 * bild eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
 * $C_1 = (x \vee \overline{y} \vee z)$ und $C_2 = (y \vee z)$ werden zu $C_3 = (x \vee z)$
