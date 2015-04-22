@@ -13,10 +13,10 @@ Turingmaschine
 	* Steuerwerk
 	* unendlich langes Steuerband
 	* Lese- und Schreibkopf
-	
+
 Turingmaschine
 --------------
-	
+
 * pro Schritt wird
 	* ein Zeichen gelesen
 	* ein Zeichen geschrieben
@@ -83,7 +83,7 @@ Die Klasse coNP
 * alle Sprachen, deren Komplement in NP liegt
 * NICHT das Komplement zu NP
 * Beispiel: Kontradiktion
-	
+
 
 Reduktion
 ---------
@@ -116,13 +116,28 @@ Adrian, Quellen bisher
 
 -->
 
-Cook-Levin Theorem {#Cook-Levin}
+Cook-Levin Theorem
 ==================
 
-<!-- Florian -->
+konjunktive Normalform
+----------------------
+
+* Jede boolsche Funktion lässt sich in konjunktiver Normalform darstellen
+* TMs die Sprachen entscheiden,<!-- akzeptieren? --> sind boolsche Funktionen
+* Die Größe einer KNF für $n$ Variablen liegt in $O(n \cdot 2^n)$
+* Siehe auch: TI1 (Digitaltechnik)
 
 Reduktion * auf SAT
 -------------------
+
+* $O(n \cdot 2^n)$ offensichtlich zu groß.
+* Sei $M$ eine TM die eine NP-vollständige Sprache akzeptiert und die
+	* ein Eingabe- und ein Ausgabe/Arbeitsband habe
+	* bei der die Position des Kopfes in Schritt $i$ nur von der Länge der Eingabe abhängt
+	* gültige Annahme, da in $O(f(n)^2)$ simulierbar
+* Sei $Q$ die Menge der Zustände von $M$
+* Sei $\Gamma$ das Bandalphabet von $M$
+* Sei $\langle a, b, q\rangle_i \in Q\times Q\times \Gamma$ der Snapshot der TM in Schritt $i$
 
 Reduktion SAT auf 3SAT
 ----------------------
