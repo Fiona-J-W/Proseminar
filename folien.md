@@ -119,15 +119,15 @@ konjunktive Normalform
 ----------------------
 
 * Jede boolsche Funktion lässt sich in konjunktiver Normalform darstellen
-* TMs die Sprachen entscheiden,<!-- akzeptieren? --> sind boolsche Funktionen
-* Die Größe einer KNF für $n$ Variablen liegt in $O(n \cdot 2^n)$
+* TMs die Sprachen entscheiden, sind boolsche Funktionen
+* Die Größe einer KNF für $n$ Variablen liegt in $O(n \cdot 2^n)$ o.B.
 * Siehe auch: TI1 (Digitaltechnik)
 
 Reduktion * auf SAT
 -------------------
 
 * $O(n \cdot 2^n)$ offensichtlich zu groß.
-* Sei $M$ eine TM die eine NP-vollständige Sprache akzeptiert und die
+* Sei $M$ eine TM die eine NP-vollständige Sprache entscheidet und die
 	* ein Eingabe- und ein Ausgabe/Arbeitsband habe
 	* bei der die Position des Kopfes in Schritt $i$ nur von der Länge der Eingabe abhängt
 	* gültige Annahme, da in $O(f(n)^2)$ simulierbar
@@ -135,8 +135,38 @@ Reduktion * auf SAT
 * Sei $\Gamma$ das Bandalphabet von $M$
 * Sei $\langle a, b, q\rangle_i \in Q\times Q\times \Gamma$ der Snapshot der TM in Schritt $i$
 
+Reduktion * auf SAT
+-------------------
+
+* Snapshots können offensichtlich als Zeichenketten konstanter
+  Länge kodiert werden.
+* Ein Snapshot $S_i$ hängt ab von:
+	* $S_{i-1}$
+	* einem Zeichen fester Position der Eingabe
+	* dem letzten Snapshot an der selben Stelle
+* Es gibt für jedes $i$ genau einen korrekten Snapshot
+* Daraus folgt: Es gibt eine Funktion $f$, die zwei Snapshots und
+  eine Position auf dem Eingabeband auf einen neuen Snapshot abbilden:
+  $$S_i = f(S_{i-1}, S_{\mathrm{prev}(i)}, E_{\mathrm{inputpos}(i)})$$
+
+Reduktion * auf SAT
+-------------------
+
+* Um eine Lösung für die betrachtete Sprache zu finden, muss man
+eine Abfolge von TM-Schritten finden, die zum Ergebnis führt.
+* Die einzelnen Schritte (und damit die Snapshotkette) kodieren
+  eine Lösung, sind aber zunächst unbekannt.
+* Die Snapshotkette lässt sich aber als polinomielle KNF schreiben.
+* Angenommen, es gäbe einen Polyzeit-Entscheider für SAT, so könnte
+  dieser damit auch die Kette von Snapshots für andere Probleme finden, und damit diese in Polyzeit entscheiden!
+
 Reduktion SAT auf 3SAT
 ----------------------
+
+Um eine SAT-Klausel $(a_1 \vee a_2 \vee \dots \vee a_n)$ nach 3SAT zu konvertieren, genügt es, sie wie folgt zu schreiben:
+
+$$ (a_1 \vee a_2 \vee h_1) \wedge (\overline{h_1} \vee a_3 \vee h_2) \wedge \dots \wedge (\overline{h_{n-2}} \vee a_{n-1} \vee a_n) $$
+Hierbei sind $h_1 \dots h_{n-2}$ neu eingeführte Hilfsvariablen.
 
 Wichtige NP-vollständige Probleme
 =================================
