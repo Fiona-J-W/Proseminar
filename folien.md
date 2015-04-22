@@ -225,8 +225,8 @@ coNP $\neq$ NP
 
 <!-- Adrian -->
 
-Implikationen von
-=================
+Implikationen
+=============
 
 Philosophisch
 -------------
