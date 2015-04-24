@@ -222,7 +222,9 @@ Indizien
 P $\neq$ NP
 -----------
 
-<!-- Florian -->
+* Unüberschaubar viele Probleme in P und NP. Trotz enormem Aufwand nicht eine einzige Reduktion.
+* Reduktionen oft um ein $\epsilon$ nicht polynomiell. Warum, wenn P = NP?
+* Existenzbeweise meist leichter als Nichtexistenzbeweise. Deswegen schwer?
 
 coNP $\neq$ NP
 --------------
@@ -258,6 +260,14 @@ Implikationen
 
 Philosophisch
 -------------
+
+* In den Naturwissenschaften wären Hypothesen mit vergleichbarer Faktenlage als Theorien anerkannt.
+	* „nur“ ein Problem weil Informatik eine Strukturwissenschaft ist
+* Folgen oft völlig unintuitiv:
+	* Warum sollte es keine Suchprobleme geben, die sich nicht besser als mit brute-force lösen lassen?
+	* Insbesondere bei nichtdeterministischen TMs: Polyzeitreduktion praktisch nicht vorstellbar.
+* 
+
 
 <!-- Florian -->
 <!-- http://www.scottaaronson.com/blog/?p=1720 -->
