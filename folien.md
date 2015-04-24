@@ -47,11 +47,26 @@ Turingmaschine (nichtdeterministisch)
 * endet eine Sequenz von Entscheidungen in $q_{accept}$ gilt die Eingabe als akzeptiert
 * im Gegensatz zur deterministischen TM nicht ohne Weiteres realisierbar
 	
+Turingmaschine (mehrband)
+-------------------------
+
+* hat anstatt einem Band mehrere mit jeweils einem Lese- und Schreibkopf
+* kann durch eine TM mit einem Band simuliert werden
+* aus $k$ Bändern werden $2k$ Spuren auf dem einen Band der TM
+	* Spur 1 enthält Band 1, Spur 2 die Position auf Band 1, Spur 3 enthält Band 2, ...
+* alternativ werden aus $k$ Bändern $k + 1$ Spuren
+	* auf den ersten $k$ Spuren stehen die $k$ Bänder
+	* auf der Spur $k+1$ wird die Kopfposition markiert
+	* bewegen sich die einzelenen Köpfe in unterschiedliche Richtungen werden die Symbole auf den entsprechenden Spuren verschoben
+* mehrband TMs sind genauso mächtig wie normale TMs aber evt. anschaulicher
+
+	
 Die Klasse P
 ------------
 
 * enthält alle Entscheidungsprobleme die in Polynomialzeit von einer TM lösbar sind
 * Probleme in P gelten als praktisch lösbar
+* ist unter Komplementbildung abgeschlossen
 * Beispiele sind:
 	* Lineare Programmierung/Optimierung
 	* PRIMES (AKS-Primzahltest)
@@ -113,6 +128,8 @@ Adrian, Quellen bisher
 * http://en.wikipedia.org/wiki/Co-NP
 * https://complexityzoo.uwaterloo.ca/Complexity_Zoo:C#conp
 * https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
+* Buch: Aussagenlogik: Deduktion und Algorithmen: Deduktion und Algorithmen von Theodor Lettmann (https://books.google.de/books?id=6ZGoBgAAQBAJ&pg=PA150&lpg=PA150&dq=resolutionsbeweis+untere+schranke&source=bl&ots=wIW90vsapu&sig=tGPO4iMYRVDXtZYi6jAepeKp0_8&hl=de&sa=X&ei=itQ4VazXNIXpaKm2gcAG&ved=0CDYQ6AEwAw#v=onepage&q=resolutionsbeweis%20untere%20schranke&f=false)
+* http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf
 
 -->
 
@@ -238,7 +255,7 @@ Resolution als Indiz für coNP $\neq$ NP
 
 * Resolution prüft ob eine KNF eine Kontradiktion ist
 * wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine Negierung $\overline{u}$ in $C_2$ vorkommen
-* bild eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
+* bilde eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
 * $C_1 = (x \vee \overline{y} \vee z)$ und $C_2 = (y \vee z)$ werden zu $C_3 = (x \vee z)$
 * es gilt $C_3 = false \Rightarrow C_1 \wedge C_2 = false$
 * kann man eine leere Klausel herleiten ist die Formel eine Kontradiktion
@@ -252,6 +269,11 @@ Resolution Beispiel
 Resolution als Indiz für coNP $\neq$ NP
 ---------------------------------------
 
+* 1985 bewies Haken eine untere Schranke für die Größe des Resolutionsbeweises für das Pidgeonhole Principle
+* diese ist $(1.49^{0.01})^n$ und unabhängig vom gewählten Algorithmus
+* aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch für andere Probleme gezeigt
+	* mittels Resolution ist coNP = NP nicht beweisbar
+	* $\Rightarrow$ Indiz für coNP $\neq$ NP
 
 <!-- Adrian -->
 
@@ -272,16 +294,22 @@ Philosophisch
 <!-- Florian -->
 <!-- http://www.scottaaronson.com/blog/?p=1720 -->
 
-Mathematische Beweise
----------------------
-
-<!-- Adrian -->
 
 P = NP
 ------
 
-coNP = NP
----------
+coNP ?= NP
+----------
+
+* aus P = NP folgt automatisch coNP = NP
+	* Umkehrung gilt nicht automatisch
+* allerding folgt aus coNP $\neq$ NP automatisch P $\neq$ NP
+	* man wählt ein NP-vollständiges Problem $L$ 
+	* das Komplement $\overline{L}$ von $L$ liegt laut Definition in coNP
+	* würde P = NP gelten, gilt $L \in$ P
+	* da P unter Komplementbildung abgeschlossen ist gilt $\overline{L} \in$ P
+	* da gilt P = NP gilt $\overline{L} \in$ NP
+	* daraus würde folgen coNP = NP was ein Wiederspruch ist
 
 Probleme zwischen P und NP
 --------------------------
