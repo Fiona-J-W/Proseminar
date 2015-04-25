@@ -199,7 +199,16 @@ Wichtige NP-vollständige Probleme
 INDSET
 ------
 
-<!-- Florian -->
+> Besitzt ein Graph $G$ mindestens $n$ paarweise nicht über eine Kante verbundene Knoten?
+
+INDSET ist NP-vollständig. Hierzu definieren wir eine Transformation beliebiger 3SAT-Instanzen
+zu Graphen:
+
+* Erzeuge für jede Klausel eine Clique, deren Knoten jeweils eine gültige Belegung repräsentieren.
+* Verbinde alle nicht verbundenen Knoten, die gemeinsam zu einer widersprüchlichen Belegung führen würden.
+* Bestimme nun eine stabile Menge der Größe $n$. Deren Knoten kodieren nun eine gültige Belegung für die 3SAT-Instanz.
+
+<!-- Ab hier: Beispiel an Tafel (TODO) -->
 
 0/1 IPROG
 ---------
@@ -220,16 +229,27 @@ INDSET
 Andere Klassen
 ==============
 
-<!-- Florian -->
-
 EXP und NEXP
 ------------
+
+* Probleme deren Zertifikat in exponentieller Zeit verfiziert bzw. gefunden werden kann.
+* In vieler Hinsicht analog zu P und NP, aber in der Praxis weniger interessant.
 
 Sonstige
 --------
 
-<!-- Zwar nicht Teil des Skripts, aber ein paar Worte über PSPACE und Co sollten auch
-nicht schaden -->
+* L $\subseteq$ NL
+	* logarithmischer Platz
+* PSPACE = NPSPACE
+	* polynomieller Platz
+* EXPSPACE = NEXPSPACE
+	* exponentieller Platz
+
+Es gilt:
+
+* L $\subseteq$ NL $\subseteq$ P $\subseteq$ NP $\subseteq$ PSPACE
+* L $\subset$ PSPACE
+* NL $\subset$ PSPACE
 
 Indizien
 ========
@@ -242,6 +262,7 @@ P $\neq$ NP
 * Unüberschaubar viele Probleme in P und NP. Trotz enormem Aufwand nicht eine einzige Reduktion.
 * Reduktionen oft um ein $\epsilon$ nicht polynomiell. Warum, wenn P = NP?
 * Existenzbeweise meist leichter als Nichtexistenzbeweise. Deswegen schwer?
+* NL $\subset$ PSPACE, eine der Untermengenrelationen dazwischen **muss** also echt sein.
 
 coNP $\neq$ NP
 --------------
@@ -288,7 +309,6 @@ Philosophisch
 * Folgen oft völlig unintuitiv:
 	* Warum sollte es keine Suchprobleme geben, die sich nicht besser als mit brute-force lösen lassen?
 	* Insbesondere bei nichtdeterministischen TMs: Polyzeitreduktion praktisch nicht vorstellbar.
-* 
 
 
 <!-- Florian -->
