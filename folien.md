@@ -235,8 +235,8 @@ EXP und NEXP
 * Probleme deren Zertifikat in exponentieller Zeit verfiziert bzw. gefunden werden kann.
 * In vieler Hinsicht analog zu P und NP, aber in der Praxis weniger interessant.
 
-Sonstige
---------
+Platzbasierte
+-------------
 
 * L $\subseteq$ NL
 	* logarithmischer Platz
@@ -250,6 +250,16 @@ Es gilt:
 * L $\subseteq$ NL $\subseteq$ P $\subseteq$ NP $\subseteq$ PSPACE
 * L $\subset$ PSPACE
 * NL $\subset$ PSPACE
+
+Sonstige
+--------
+
+* NPI (NP-Intermediate)
+	* NP-Problene, weder in P, noch NP-vollständig
+	* Existenz unbewiesen
+* BQP, QMA, …
+	* Analoge Klassen für Quantencomputer
+
 
 Indizien
 ========
@@ -310,13 +320,23 @@ Philosophisch
 	* Warum sollte es keine Suchprobleme geben, die sich nicht besser als mit brute-force lösen lassen?
 	* Insbesondere bei nichtdeterministischen TMs: Polyzeitreduktion praktisch nicht vorstellbar.
 
-
-<!-- Florian -->
 <!-- http://www.scottaaronson.com/blog/?p=1720 -->
+
+Kryptographisch
+---------------
+
+* Nicht **zwingend** katastrophal
+	* Feste aber große Exponenten reichen vermutlich auch: $2^{512} \ll 512^{100}$
+	* Heutige Krypto meist nicht NP-vollständig (Faktorisierung in NPI vermutet)
+	* Quantencomputer sind hier eine **viel** realere Bedrohung. ($\rightarrow$ Shor-Algorithmus)
+* Andererseits: Passwort raten, leicht gemacht?
+	* Gibt es ein Passphrase der Länge $\le n$ die diese Datei entschlüsselt? $\in$ NP
 
 
 P = NP
 ------
+
+* Es gäbe keine Klasse NPI
 
 coNP ?= NP
 ----------
