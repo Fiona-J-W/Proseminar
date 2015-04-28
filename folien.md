@@ -8,6 +8,11 @@ Einführung
 Turingmaschine
 --------------
 
+![http://www.legoturingmachine.org](img/lego_tm.png)
+
+Turingmaschine
+--------------
+
 * mathematische Abstraktion eines Computers
 * besteht aus
 	* Steuerwerk
@@ -136,6 +141,11 @@ Adrian, Quellen bisher
 Cook-Levin Theorem
 ==================
 
+Stephen Cook und Leonid Levin
+-----------------------------
+
+![Stephen Cook (CC-BY-SA 3.0, Jiří Janíček), Leonid Levin (CC-BY-SA 3.0, Sergio01)](img/cook_levin.png)
+
 konjunktive Normalform
 ----------------------
 
@@ -248,7 +258,6 @@ Platzbasierte
 Es gilt:
 
 * L $\subseteq$ NL $\subseteq$ P $\subseteq$ NP $\subseteq$ PSPACE
-* L $\subset$ PSPACE
 * NL $\subset$ PSPACE
 
 Sonstige
