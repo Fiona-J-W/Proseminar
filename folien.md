@@ -123,23 +123,7 @@ NP-Vollständigkeit
 
 <!-- 
 Adrian, Quellen bisher
-* http://de.wikipedia.org/wiki/P_%28Komplexit%C3%A4tsklasse%29
-* http://de.wikipedia.org/wiki/Turingmaschine
-* http://de.wikipedia.org/wiki/Polynomialzeit
-* https://complexityzoo.uwaterloo.ca/Complexity_Zoo:P#p
-* http://de.wikipedia.org/wiki/Lineare_Optimierung
-* http://de.wikipedia.org/wiki/AKS-Primzahltest
-* http://de.wikipedia.org/wiki/Horn-Formel
-* http://de.wikipedia.org/wiki/Reduktion_%28Theoretische_Informatik%29
-* http://en.wikipedia.org/wiki/Co-NP
-* https://complexityzoo.uwaterloo.ca/Complexity_Zoo:C#conp
-* https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
-* Buch: Aussagenlogik: Deduktion und Algorithmen: Deduktion und Algorithmen von Theodor Lettmann (https://books.google.de/books?id=6ZGoBgAAQBAJ&pg=PA150&lpg=PA150&dq=resolutionsbeweis+untere+schranke&source=bl&ots=wIW90vsapu&sig=tGPO4iMYRVDXtZYi6jAepeKp0_8&hl=de&sa=X&ei=itQ4VazXNIXpaKm2gcAG&ved=0CDYQ6AEwAw#v=onepage&q=resolutionsbeweis%20untere%20schranke&f=false)
-* http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf
-* http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/46927-f97/slides/Lec4/sld033.htm
-* http://www.cosy.sbg.ac.at/~held/teaching/wiss_arbeiten/slides_02-03/kmrr.pdf
-* http://hackvalue.de/files/tsp.pdf
-* http://de.wikipedia.org/wiki/Satz_von_Ladner
+
 
 -->
 
@@ -406,4 +390,33 @@ Umgang mit NP-vollständigen Problemen
 * Ist der Worst-Case wirklich wahrscheinlich?
 * Gibt es andere Modelierungen in P?
 * Ist $n$ wirklich so groß, dass NP-Vollständigkeit ein Problem darstellt?
+
+Quellenangaben
+==============
+
+----
+
+* http://de.wikipedia.org/wiki/P_%28Komplexit%C3%A4tsklasse%29
+* http://de.wikipedia.org/wiki/Turingmaschine
+* http://de.wikipedia.org/wiki/Polynomialzeit
+* https://complexityzoo.uwaterloo.ca/Complexity_Zoo:P#p
+* http://de.wikipedia.org/wiki/Lineare_Optimierung
+* http://de.wikipedia.org/wiki/AKS-Primzahltest
+* http://de.wikipedia.org/wiki/Horn-Formel
+* http://de.wikipedia.org/wiki/Reduktion_%28Theoretische_Informatik%29
+* http://en.wikipedia.org/wiki/Co-NP
+* https://complexityzoo.uwaterloo.ca/Complexity_Zoo:C#conp
+* https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
+
+----
+
+* Buch: Aussagenlogik: Deduktion und Algorithmen: Deduktion und Algorithmen von Theodor Lettmann (https://books.google.de/books?id=6ZGoBgAAQBAJ&pg=PA150&lpg=PA150&dq=resolutionsbeweis+untere+schranke&source=bl&ots=wIW90vsapu&sig=tGPO4iMYRVDXtZYi6jAepeKp0_8&hl=de&sa=X&ei=itQ4VazXNIXpaKm2gcAG&ved=0CDYQ6AEwAw#v=onepage&q=resolutionsbeweis%20untere%20schranke&f=false)
+* http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf
+* http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/46927-f97/slides/Lec4/sld033.htm
+* http://www.cosy.sbg.ac.at/~held/teaching/wiss_arbeiten/slides_02-03/kmrr.pdf
+* http://hackvalue.de/files/tsp.pdf
+* http://de.wikipedia.org/wiki/Satz_von_Ladner
+* http://de.wikipedia.org/wiki/Primfaktorzerlegung
+* http://en.wikipedia.org/wiki/NP-intermediate
+
 
