@@ -136,6 +136,10 @@ Adrian, Quellen bisher
 * https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
 * Buch: Aussagenlogik: Deduktion und Algorithmen: Deduktion und Algorithmen von Theodor Lettmann (https://books.google.de/books?id=6ZGoBgAAQBAJ&pg=PA150&lpg=PA150&dq=resolutionsbeweis+untere+schranke&source=bl&ots=wIW90vsapu&sig=tGPO4iMYRVDXtZYi6jAepeKp0_8&hl=de&sa=X&ei=itQ4VazXNIXpaKm2gcAG&ved=0CDYQ6AEwAw#v=onepage&q=resolutionsbeweis%20untere%20schranke&f=false)
 * http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf
+* http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/46927-f97/slides/Lec4/sld033.htm
+* http://www.cosy.sbg.ac.at/~held/teaching/wiss_arbeiten/slides_02-03/kmrr.pdf
+* http://hackvalue.de/files/tsp.pdf
+* http://de.wikipedia.org/wiki/Satz_von_Ladner
 
 -->
 
@@ -229,6 +233,15 @@ zu Graphen:
 * In NP: die Belegung der Variablen kann als Zertifikat gesehen werden
 * NP-vollständig: SAT $\preceq$ 0/1 IPROG, da jede Klausel als Ungleichung aufgefasst werden kann
 	* $u_1 \vee \overline{u_2} \vee \overline{u_3}$ kann ausgedrückt werden durch $u_1 + (1 - u_2) + (1 - u_3) \geq 1$
+
+Traveling Salesman (TSP)
+------------------------
+
+> Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
+
+* In NP: die Reihenfolge der Städte kann als Zertifikat betrachtet werden
+* NP-Vollständig: HAMILTON $\preceq$ TSP, indem man jede Kante des Graphs mit 1 gewichtet
+	* Gibt es einen Pfad der Länge $l = |V|$ so hat der Graph einen Hamiltonkreis
 
 <!-- Adrian -->
 
@@ -364,6 +377,19 @@ coNP ?= NP
 Probleme zwischen P und NP-Vollständig
 --------------------------------------
 
+* Gilt P $\neq$ NP so gibt es eine Klasse NPI für die gilt:
+	* $A \in$ NPI gdw. $A \notin$ P und $A$ ist nicht NP-Schwer
+* Wurde von Richard Ladner 1975 bewiesen
+* Er konstruierte ein künstliches Problem welches unter der Annahme P $\neq$ NP in NPI liegt
+* Es ist nicht sicher ob es "natürliche" Probleme in NPI gibt
+
+Vermutete Probleme in NPI
+-------------------------
+
+* Man vermutet, dass die Primfaktorzerlegung in NPI liegt
+* Bisher noch kein Algorithmus in Polynomialzeit gefunden
+* Noch kein Beweis für NP-Schwere
+* Aktuelle Kryptographie baut darauf auf (RSA)
 
 Umgang mit NP-vollständigen Problemen
 =====================================
