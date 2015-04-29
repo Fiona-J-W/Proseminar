@@ -8,13 +8,8 @@ Einführung
 Turingmaschine
 --------------
 
-![http://www.legoturingmachine.org](img/lego_tm.png)
-
-Turingmaschine
---------------
-
-* mathematische Abstraktion eines Computers
-* besteht aus
+* Mathematische Abstraktion eines Computers
+* Besteht aus:
 	* Steuerwerk
 	* unendlich langes Steuerband
 	* Lese- und Schreibkopf
@@ -22,20 +17,25 @@ Turingmaschine
 Turingmaschine
 --------------
 
-* pro Schritt wird
+* Pro Schritt wird:
 	* ein Zeichen gelesen
 	* ein Zeichen geschrieben
 	* eine Bewegung ausgeführt
-* jeder Schritt ist nur abhängig von
+* Jeder Schritt ist nur abhängig von:
 	* aktuellem Zeichen auf dem Band
 	* aktuellem Zustand der TM
-* eine TM hat endlich viele Zustände
-* man kann Zustände als Endzustände definieren
+* Eine TM hat endlich viele Zustände
+* Man kann Zustände als Endzustände definieren
+
+Turingmaschine
+--------------
+
+![ http://www.legoturingmachine.org](img/lego_tm.png)
 
 Turingmaschine formal
 ---------------------
 
-* formal besteht eine TM aus
+* Formal besteht eine TM aus:
 	* $Q$, die endlichen Zustandsmenge
 	* $\Sigma$, das endlichen Eingabealphabet
 	* $\Gamma$, das endliche Bandalphabet und es gilt $\Sigma \subset \Gamma$
@@ -47,31 +47,31 @@ Turingmaschine formal
 Turingmaschine (nichtdeterministisch)
 -------------------------------------
 
-* ähnlich der deterministischen TM
+* Ähnlich der deterministischen TM
 * NDTM hat allerdings zwei Übergangsfunktionen $\delta_0$ und $\delta_1$
-* endet eine Sequenz von Entscheidungen in $q_{accept}$ gilt die Eingabe als akzeptiert
-* im Gegensatz zur deterministischen TM nicht ohne Weiteres realisierbar
+* Endet eine Sequenz von Entscheidungen in $q_{accept}$ gilt die Eingabe als akzeptiert
+* Im Gegensatz zur deterministischen TM nicht ohne Weiteres realisierbar
 	
-Turingmaschine (mehrband)
+Turingmaschine (Mehrband)
 -------------------------
 
-* hat anstatt einem Band mehrere mit jeweils einem Lese- und Schreibkopf
-* kann durch eine TM mit einem Band simuliert werden
-* aus $k$ Bändern werden $2k$ Spuren auf dem einen Band der TM
+* Hat anstatt einem Band mehrere mit jeweils einem Lese- und Schreibkopf
+* Kann durch eine TM mit einem Band simuliert werden
+* Aus $k$ Bändern werden $2k$ Spuren auf dem einen Band der TM:
 	* Spur 1 enthält Band 1, Spur 2 die Position auf Band 1, Spur 3 enthält Band 2, ...
-* alternativ werden aus $k$ Bändern $k + 1$ Spuren
+* Alternativ werden aus $k$ Bändern $k + 1$ Spuren:
 	* auf den ersten $k$ Spuren stehen die $k$ Bänder
 	* auf der Spur $k+1$ wird die Kopfposition markiert
 	* bewegen sich die einzelenen Köpfe in unterschiedliche Richtungen werden die Symbole auf den entsprechenden Spuren verschoben
-* mehrband TMs sind genauso mächtig wie normale TMs aber evt. anschaulicher
+* Mehrband TMs sind genauso mächtig wie normale TMs aber evt. anschaulicher
 
 	
 Die Klasse P
 ------------
 
-* enthält alle Entscheidungsprobleme die in Polynomialzeit von einer TM lösbar sind
+* Enthält alle Entscheidungsprobleme die in Polynomialzeit von einer TM lösbar sind
 * Probleme in P gelten als praktisch lösbar
-* ist unter Komplementbildung abgeschlossen
+* Ist unter Komplementbildung abgeschlossen
 * Beispiele sind:
 	* Lineare Programmierung/Optimierung
 	* PRIMES (AKS-Primzahltest)
@@ -81,26 +81,27 @@ Die Klasse P
 Die Klasse NP (formal)
 ----------------------
 
-Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$ sowie eine in Polynomialzeit laufende TM $M$, den sogenannten Verifizierer für $L$, gibt, sodass für jedes $x \in \{0, 1\}^*$ gilt:
-\
-$x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$ sodass $M(x, u) = 1$
-\
-In diesem Fall nennt man $u$ ein Zertifikat für $x$.
+* Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es:
+	* ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$ 
+	* sowie eine in Polynomialzeit laufende TM $M$, den sogenannten Verifizierer für $L$, gibt
+	* sodass für jedes $x \in \{0, 1\}^*$ gilt:
+		* $x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$ sodass $M(x, u) = 1$
+* In diesem Fall nennt man $u$ ein Zertifikat für $x$.
 
 Die Klasse NP (alternativ)
 --------------------------
 
-* alle Entscheidungsprobleme die von einer NDTM $M$ in Polynomialzeit gelöst werden
+* Alle Entscheidungsprobleme die von einer NDTM $M$ in Polynomialzeit gelöst werden
 * $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt, sodass $M$ in $q_{accept}$ hält.
 	* es gilt in diesem Fall $M(x) = 1$
-* gibt es keine Sequenz für die $M$ in $q_{accept}$ gilt $M(x) = 0$
-* ursprüngliche Definition, deswegen auch NP (nondeterministic polynomial time)
-* beide Definitionen äquivalent, da die Sequenz von Entscheidungen die zu $q_{accept}$ führt als Verifizierer betrachtet werden kann
+* Gibt es keine Sequenz für die $M$ in $q_{accept}$ hält, gilt $M(x) = 0$
+* Ursprüngliche Definition, deswegen auch NP (nondeterministic polynomial time)
+* Beide Definitionen äquivalent, da die Sequenz von Entscheidungen die zu $q_{accept}$ führt als Verifizierer betrachtet werden kann
 
 Die Klasse coNP
 ---------------
 
-* alle Sprachen, deren Komplement in NP liegt
+* Alle Sprachen, deren Komplement in NP liegt
 * NICHT das Komplement zu NP
 * Beispiel: Kontradiktion
 
@@ -109,16 +110,16 @@ Reduktion
 ---------
 
 * $A$ heißt reduzierbar auf $B$, wenn es einen Algorithmus gibt, der aus jedem Problem aus $A$ in Polynomialzeit ein Problem aus $B$ macht
-* gibt es einen Algorithmus zur Lösung von $B$ und gilt $A \preceq B$, so kann dieser auch $A$ lösen
-* man sagt $B$ ist mindestens so schwer wie $A$
+* Gibt es einen Algorithmus zur Lösung von $B$ und gilt $A \preceq B$, so kann dieser auch $A$ lösen
+* Man sagt $B$ ist mindestens so schwer wie $A$
 
 NP-Vollständigkeit
 ------------------
 
-* gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
-* liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
-* um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein NP-schweres $L$ zu zeigen
-* ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $A'$ logischerweise coNP-schwer
+* Gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
+* Liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
+* Um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein NP-schweres $L$ zu zeigen
+* Ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $A'$ logischerweise coNP-schwer
 
 <!-- 
 Adrian, Quellen bisher
@@ -223,9 +224,9 @@ zu Graphen:
 0/1 IPROG
 ---------
 
-* gegeben: $m$ lineare Ungleichungen über $n$ Variablen
-* gesucht: eine Lösung für das System wobei die Variablen nur 0 oder 1 annehmen können
-* in NP: die Belegung der Variablen kann als Zertifikat gesehen werden
+* Gegeben: $m$ lineare Ungleichungen über $n$ Variablen
+* Gesucht: eine Lösung für das System wobei die Variablen nur 0 oder 1 annehmen können
+* In NP: die Belegung der Variablen kann als Zertifikat gesehen werden
 * NP-vollständig: SAT $\preceq$ 0/1 IPROG, da jede Klausel als Ungleichung aufgefasst werden kann
 	* $u_1 \vee \overline{u_2} \vee \overline{u_3}$ kann ausgedrückt werden durch $u_1 + (1 - u_2) + (1 - u_3) \geq 1$
 
@@ -286,19 +287,19 @@ P $\neq$ NP
 coNP $\neq$ NP
 --------------
 
-* bisher wurde noch für kein coNP-schweres Problem ein polynomielles Zertifikat gefunden
-* es konnte noch für kein NP-schweres Problem nachgewiesen werden, dass es in coNP liegt
-* es konnte noch für kein Problem aus NP $\cap$ coNP NP-schwere bzw. coNP-schwere nachgewiesen werden
+* Bisher wurde noch für kein coNP-schweres Problem ein polynomielles Zertifikat gefunden
+* Es konnte noch für kein NP-schweres Problem nachgewiesen werden, dass es in coNP liegt
+* Es konnte noch für kein Problem aus NP $\cap$ coNP NP-schwere bzw. coNP-schwere nachgewiesen werden
 
 Resolution als Indiz für coNP $\neq$ NP
 ---------------------------------------
 
 * Resolution prüft ob eine KNF eine Kontradiktion ist
-* wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine Negierung $\overline{u}$ in $C_2$ vorkommen
-* bilde eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
+* Wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine Negierung $\overline{u}$ in $C_2$ vorkommen
+* Bilde eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
 * $C_1 = (x \vee \overline{y} \vee z)$ und $C_2 = (y \vee z)$ werden zu $C_3 = (x \vee z)$
-* es gilt $C_3 = false \Rightarrow C_1 \wedge C_2 = false$
-* kann man eine leere Klausel herleiten ist die Formel eine Kontradiktion
+* Es gilt $C_3 = false \Rightarrow C_1 \wedge C_2 = false$
+* Kann man eine leere Klausel herleiten ist die Formel eine Kontradiktion
 
 Resolution Beispiel
 ---------------------------------------
@@ -310,8 +311,8 @@ Resolution als Indiz für coNP $\neq$ NP
 ---------------------------------------
 
 * 1985 bewies Haken eine untere Schranke für die Größe des Resolutionsbeweises für das Pidgeonhole Principle
-* diese ist $(1.49^{0.01})^n$ und unabhängig vom gewählten Algorithmus
-* aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch für andere Probleme gezeigt
+* Diese ist $(1.49^{0.01})^n$ und unabhängig vom gewählten Algorithmus
+* Aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch für andere Probleme gezeigt
 	* mittels Resolution ist coNP = NP nicht beweisbar
 	* $\Rightarrow$ Indiz für coNP $\neq$ NP
 
@@ -350,9 +351,9 @@ P = NP
 coNP ?= NP
 ----------
 
-* aus P = NP folgt automatisch coNP = NP
+* Aus P = NP folgt automatisch coNP = NP
 	* Umkehrung gilt nicht automatisch
-* allerding folgt aus coNP $\neq$ NP automatisch P $\neq$ NP
+* Allerding folgt aus coNP $\neq$ NP automatisch P $\neq$ NP:
 	* man wählt ein NP-vollständiges Problem $L$ 
 	* das Komplement $\overline{L}$ von $L$ liegt laut Definition in coNP
 	* würde P = NP gelten, gilt $L \in$ P
@@ -360,8 +361,8 @@ coNP ?= NP
 	* da gilt P = NP gilt $\overline{L} \in$ NP
 	* daraus würde folgen coNP = NP was ein Wiederspruch ist
 
-Probleme zwischen P und NP
---------------------------
+Probleme zwischen P und NP-Vollständig
+--------------------------------------
 
 
 Umgang mit NP-vollständigen Problemen
