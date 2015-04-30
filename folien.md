@@ -386,8 +386,16 @@ Umgang mit NP-vollständigen Problemen
 
 * Exisitieren vielleicht gute Näherungslösungen?
 * Ist der Worst-Case wirklich wahrscheinlich?
-* Gibt es andere Modelierungen in P?
 * Ist $n$ wirklich so groß, dass NP-Vollständigkeit ein Problem darstellt?
+
+Umgang mit NP-vollständigen Problemen
+-------------------------------------
+
+* Gibt es vielleicht bessere, nicht NP-schwere Modelierungen?
+
+![](http://imgs.xkcd.com/comics/travelling_salesman_problem.png)
+
+<!-- xkcd 399-->
 
 Quellenangaben
 ==============
@@ -416,5 +424,6 @@ Quellenangaben
 * http://de.wikipedia.org/wiki/Satz_von_Ladner
 * http://de.wikipedia.org/wiki/Primfaktorzerlegung
 * http://en.wikipedia.org/wiki/NP-intermediate
+
 
 
