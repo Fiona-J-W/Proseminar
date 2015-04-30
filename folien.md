@@ -8,11 +8,6 @@ Einführung
 Turingmaschine
 --------------
 
-![http://www.legoturingmachine.org](img/lego_tm.png)
-
-Turingmaschine
---------------
-
 * mathematische Abstraktion eines Computers
 * besteht aus
 	* Steuerwerk
@@ -31,6 +26,11 @@ Turingmaschine
 	* aktuellem Zustand der TM
 * eine TM hat endlich viele Zustände
 * man kann Zustände als Endzustände definieren
+
+Turingmaschine
+--------------
+
+![http://www.legoturingmachine.org](img/lego_tm.png)
 
 Turingmaschine formal
 ---------------------
@@ -81,11 +81,12 @@ Die Klasse P
 Die Klasse NP (formal)
 ----------------------
 
-Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$ sowie eine in Polynomialzeit laufende TM $M$, den sogenannten Verifizierer für $L$, gibt, sodass für jedes $x \in \{0, 1\}^*$ gilt:
-\
-$x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$ sodass $M(x, u) = 1$
-\
-In diesem Fall nennt man $u$ ein Zertifikat für $x$.
+* Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es
+	* ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$,
+	* sowie eine in Polynomialzeit laufende TM $M$, den sogenannten Verifizierer für $L$ gibt
+	* und für jedes $x \in \{0, 1\}^*$ gilt:
+		* $x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$ sodass $M(x, u) = 1$
+* In diesem Fall nennt man $u$ ein Zertifikat für $x$.
 
 Die Klasse NP (alternativ)
 --------------------------
@@ -265,7 +266,7 @@ Sonstige
 
 * NPI (NP-Intermediate)
 	* NP-Problene, weder in P, noch NP-vollständig
-	* Existenz unbewiesen
+	* existiert wenn P $\neq$ NP
 * BQP, QMA, …
 	* Analoge Klassen für Quantencomputer
 
@@ -328,6 +329,7 @@ Philosophisch
 * Folgen oft völlig unintuitiv:
 	* Warum sollte es keine Suchprobleme geben, die sich nicht besser als mit brute-force lösen lassen?
 	* Insbesondere bei nichtdeterministischen TMs: Polyzeitreduktion praktisch nicht vorstellbar.
+	* Alle Probleme in NP (TODO: P-vollständig?) wären vergleichbar schwer, es gäbe keine Klasse NPI
 
 <!-- http://www.scottaaronson.com/blog/?p=1720 -->
 
@@ -340,12 +342,6 @@ Kryptographisch
 	* Quantencomputer sind hier eine **viel** realere Bedrohung. ($\rightarrow$ Shor-Algorithmus)
 * Andererseits: Passwort raten, leicht gemacht?
 	* Gibt es ein Passphrase der Länge $\le n$ die diese Datei entschlüsselt? $\in$ NP
-
-
-P = NP
-------
-
-* Es gäbe keine Klasse NPI
 
 coNP ?= NP
 ----------
