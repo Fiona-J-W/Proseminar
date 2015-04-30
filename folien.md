@@ -35,34 +35,32 @@ Turingmaschine
 Turingmaschine formal
 ---------------------
 
-* Formal besteht eine TM aus:
+* Formal besteht eine TM aus einem Tupel $\mathcal{M}:=\{ Q, \Sigma, \Gamma, \delta, q_0, F \}$ mit:
 	* $Q$, die endlichen Zustandsmenge
 	* $\Sigma$, das endlichen Eingabealphabet
 	* $\Gamma$, das endliche Bandalphabet und es gilt $\Sigma \subset \Gamma$
-	* $\delta\colon (Q \setminus \{q_f\})\times \Gamma \to Q \times \Gamma \times \{L, 0, R\}$ ist die (partielle) Überführungsfunktion
-	* $q_0 \in Q$ ist der Anfangszustand
-	* $\square \in \Gamma\setminus\Sigma$ steht für das leere Feld
-	* $q_{accept} \in Q$ ist der akzeptierende Zustand
+	* $\delta\colon (Q \setminus F)\times \Gamma \to Q \times \Gamma \times \{L, 0, R\}$, der (partiellen) Überführungsfunktion
+	* $q_0 \in Q$, dem Anfangszustand
+	* $\square \in \Gamma\setminus\Sigma$, das leere Feld
+	* $F \subseteq Q$, die Menge der akzeptierenden Zustände
 
 Turingmaschine (nichtdeterministisch)
 -------------------------------------
 
 * Ähnlich der deterministischen TM
 * NDTM hat allerdings zwei Übergangsfunktionen $\delta_0$ und $\delta_1$
-* Endet eine Sequenz von Entscheidungen in $q_{accept}$ gilt die Eingabe als akzeptiert
+* Endet eine Sequenz von Entscheidungen in $F$ gilt die Eingabe als akzeptiert
 * Im Gegensatz zur deterministischen TM nicht ohne Weiteres realisierbar
 	
 Turingmaschine (Mehrband)
 -------------------------
 
 * Hat anstatt einem Band mehrere mit jeweils einem Lese- und Schreibkopf
+\
+![](img/TM1.png)
 * Kann durch eine TM mit einem Band simuliert werden
-* Aus $k$ Bändern werden $2k$ Spuren auf dem einen Band der TM:
-	* Spur 1 enthält Band 1, Spur 2 die Position auf Band 1, Spur 3 enthält Band 2, ...
-* Alternativ werden aus $k$ Bändern $k + 1$ Spuren:
-	* auf den ersten $k$ Spuren stehen die $k$ Bänder
-	* auf der Spur $k+1$ wird die Kopfposition markiert
-	* bewegen sich die einzelenen Köpfe in unterschiedliche Richtungen werden die Symbole auf den entsprechenden Spuren verschoben
+\
+![](img/TM2.png)
 * Mehrband TMs sind genauso mächtig wie normale TMs aber evt. anschaulicher
 
 	
@@ -83,20 +81,20 @@ Die Klasse NP (formal)
 
 * Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es:
 	* ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$ 
-	* sowie eine in Polynomialzeit laufende TM $M$, den sogenannten Verifizierer für $L$, gibt
+	* sowie eine in Polynomialzeit laufende TM $\mathcal{M}$, den sogenannten Verifizierer für $L$, gibt
 	* sodass für jedes $x \in \{0, 1\}^*$ gilt:
-		* $x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$ sodass $M(x, u) = 1$
+		* $x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$, sodass $\mathcal{M}(x, u) = 1$
 * In diesem Fall nennt man $u$ ein Zertifikat für $x$.
 
 Die Klasse NP (alternativ)
 --------------------------
 
-* Alle Entscheidungsprobleme die von einer NDTM $M$ in Polynomialzeit gelöst werden
-* $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt, sodass $M$ in $q_{accept}$ hält.
-	* es gilt in diesem Fall $M(x) = 1$
-* Gibt es keine Sequenz für die $M$ in $q_{accept}$ hält, gilt $M(x) = 0$
+* Alle Entscheidungsprobleme die von einer NDTM $\mathcal{M}$ in Polynomialzeit gelöst werden
+* $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt, sodass $\mathcal{M}$ in $F$ hält.
+	* es gilt in diesem Fall $\mathcal{M}(x) = 1$
+* Gibt es keine Sequenz für die $\mathcal{M}$ in $F$ hält, gilt $\mathcal{M}(x) = 0$
 * Ursprüngliche Definition, deswegen auch NP (nondeterministic polynomial time)
-* Beide Definitionen äquivalent, da die Sequenz von Entscheidungen die zu $q_{accept}$ führt als Verifizierer betrachtet werden kann
+* Beide Definitionen äquivalent, da die Sequenz von Entscheidungen, die zu $F$ führt als Verifizierer betrachtet werden kann
 
 Die Klasse coNP
 ---------------
@@ -119,7 +117,7 @@ NP-Vollständigkeit
 * Gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
 * Liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
 * Um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein NP-schweres $L$ zu zeigen
-* Ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $A'$ logischerweise coNP-schwer
+* Ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $A'$ in coNP logischerweise coNP-schwer
 
 <!-- 
 Adrian, Quellen bisher
@@ -147,12 +145,12 @@ Reduktion * auf SAT
 -------------------
 
 * $O(n \cdot 2^n)$ offensichtlich zu groß.
-* Sei $M$ eine TM die eine NP-vollständige Sprache entscheidet und die
+* Sei $\mathcal{M}$ eine TM die eine NP-vollständige Sprache entscheidet und die
 	* ein Eingabe- und ein Ausgabe/Arbeitsband habe
 	* bei der die Position des Kopfes in Schritt $i$ nur von der Länge der Eingabe abhängt
 	* gültige Annahme, da in $O(f(n)^2)$ simulierbar
-* Sei $Q$ die Menge der Zustände von $M$
-* Sei $\Gamma$ das Bandalphabet von $M$
+* Sei $Q$ die Menge der Zustände von $\mathcal{M}$
+* Sei $\Gamma$ das Bandalphabet von $\mathcal{M}$
 * Sei $\langle a, b, q\rangle_i \in Q\times Q\times \Gamma$ der Snapshot der TM in Schritt $i$
 
 Reduktion * auf SAT
@@ -212,7 +210,7 @@ zu Graphen:
 0/1 IPROG
 ---------
 
-* Gegeben: $m$ lineare Ungleichungen über $n$ Variablen
+* Gegeben: $\mathcal{M}$ lineare Ungleichungen über $n$ Variablen
 * Gesucht: eine Lösung für das System wobei die Variablen nur 0 oder 1 annehmen können
 * In NP: die Belegung der Variablen kann als Zertifikat gesehen werden
 * NP-vollständig: SAT $\preceq$ 0/1 IPROG, da jede Klausel als Ungleichung aufgefasst werden kann
@@ -293,7 +291,7 @@ Resolution als Indiz für coNP $\neq$ NP
 
 * Resolution prüft ob eine KNF eine Kontradiktion ist
 * Wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine Negierung $\overline{u}$ in $C_2$ vorkommen
-* Bilde eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_1 \backslash \{\overline{u}\}$
+* Bilde eine neue Klausel $C_3 = C_1 \backslash \{u\} \vee C_2 \backslash \{\overline{u}\}$
 * $C_1 = (x \vee \overline{y} \vee z)$ und $C_2 = (y \vee z)$ werden zu $C_3 = (x \vee z)$
 * Es gilt $C_3 = false \Rightarrow C_1 \wedge C_2 = false$
 * Kann man eine leere Klausel herleiten ist die Formel eine Kontradiktion
@@ -307,7 +305,7 @@ Resolution Beispiel
 Resolution als Indiz für coNP $\neq$ NP
 ---------------------------------------
 
-* 1985 bewies Haken eine untere Schranke für die Größe des Resolutionsbeweises für das Pidgeonhole Principle
+* 1985 bewies Haken eine untere Schranke für die Größe des Resolutionsbeweises für das Taubenschlagprinzip
 * Diese ist $(1.49^{0.01})^n$ und unabhängig vom gewählten Algorithmus
 * Aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch für andere Probleme gezeigt
 	* mittels Resolution ist coNP = NP nicht beweisbar
@@ -345,7 +343,7 @@ P = NP
 
 * Es gäbe keine Klasse NPI
 
-coNP ?= NP
+coNP $\stackrel{?}{=}$ NP
 ----------
 
 * Aus P = NP folgt automatisch coNP = NP
@@ -361,8 +359,8 @@ coNP ?= NP
 Probleme zwischen P und NP-Vollständig
 --------------------------------------
 
-* Gilt P $\neq$ NP so gibt es eine Klasse NPI für die gilt:
-	* $A \in$ NPI gdw. $A \notin$ P und $A$ ist nicht NP-Schwer
+* Gilt P $\neq$ NP so gibt es eine Klasse NP-intermediate (NPI) für die gilt:
+	* $A \in$ NPI gdw. $A \in$ NP, $A \notin$ P und $A$ ist nicht NP-Schwer
 * Wurde von Richard Ladner 1975 bewiesen
 * Er konstruierte ein künstliches Problem welches unter der Annahme P $\neq$ NP in NPI liegt
 * Es ist nicht sicher ob es "natürliche" Probleme in NPI gibt
