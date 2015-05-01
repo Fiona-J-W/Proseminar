@@ -133,25 +133,34 @@ Stephen Cook und Leonid Levin
 
 ![Stephen Cook (CC-BY-SA 3.0, Jiří Janíček), Leonid Levin (CC-BY-SA 3.0, Sergio01)](img/cook_levin.png)
 
-konjunktive Normalform
+Konjunktive Normalform
 ----------------------
+
+* Boolsche Funktionen der Form $$(a \vee b \vee c) \wedge (d \vee e) \wedge (f \vee g \vee h \vee i)$$
+  stehen in **konjunktiver Normalform**
+* Lösungen stellen alle Belegungen dar, die zu 1 evaluieren
+* Das Entscheidungsproblem, ob es eine Lösung gibt, ist als **SAT** (von „satisfiable“) bekannt
+* Der Spezialfall, bei dem jede Teilklausel genau drei Variablen beinhaltet, heißt **3SAT**:
+  $$(a \vee b \vee c) \wedge (d \vee e \vee f) \wedge \dots$$
+
+Boolsche Funktionen
+-------------------
 
 * Jede boolsche Funktion lässt sich in konjunktiver Normalform darstellen
 * TMs die Sprachen entscheiden, sind boolsche Funktionen
-* Die Größe einer KNF für $n$ Variablen liegt in $O(n \cdot 2^n)$ o.B.
-* Siehe auch: TI1 (Digitaltechnik)
+* Die Größe einer KNF für $n$ Variablen liegt in $O(n \cdot 2^n)$
 
 Reduktion * auf SAT
 -------------------
 
-* $O(n \cdot 2^n)$ offensichtlich zu groß.
+* $O(n \cdot 2^n)$ offensichtlich zu groß
 * Sei $\mathcal{M}$ eine TM die eine NP-vollständige Sprache entscheidet und die
 	* ein Eingabe- und ein Ausgabe/Arbeitsband habe
 	* bei der die Position des Kopfes in Schritt $i$ nur von der Länge der Eingabe abhängt
 	* gültige Annahme, da in $O(f(n)^2)$ simulierbar
 * Sei $Q$ die Menge der Zustände von $\mathcal{M}$
 * Sei $\Gamma$ das Bandalphabet von $\mathcal{M}$
-* Sei $\langle a, b, q\rangle_i \in Q\times Q\times \Gamma$ der Snapshot der TM in Schritt $i$
+* Sei $\langle a, b, q\rangle_i \in Q\times Q\times \Gamma$ der Snapshot von $\mathcal{M}$ in Schritt $i$
 
 Reduktion * auf SAT
 -------------------
@@ -174,17 +183,38 @@ Reduktion * auf SAT
 eine Abfolge von TM-Schritten finden, die zum Ergebnis führt.
 * Die einzelnen Schritte (und damit die Snapshotkette) kodieren
   eine Lösung, sind aber zunächst unbekannt.
-* Die Snapshotkette lässt sich aber als polinomielle KNF schreiben.
+* Die Snapshotkette lässt sich aber als polynomielle KNF schreiben.
 * Angenommen, es gäbe einen Polyzeit-Entscheider für SAT, so könnte
   dieser damit auch die Kette von Snapshots für andere Probleme finden, und damit diese in Polyzeit entscheiden!
 
 Reduktion SAT auf 3SAT
 ----------------------
 
-Um eine SAT-Klausel $(a_1 \vee a_2 \vee \dots \vee a_n)$ nach 3SAT zu konvertieren, genügt es, sie wie folgt zu schreiben:
+* Wir möchten die Klausel $F_1 = (a \vee b \vee c \vee d)$ mit Lösung $L_1$ in 3SAT-Klauseln zerlegen
+* Sei $h$ eine neu eingeführte Hilfsvariable
+* Dann ist $F_2 = (a \vee b \vee h) \wedge (\overline{h} \vee c \vee d)$ mit Lößung $L_2$ eine äquivalente Formel
+* Erfüllbarkeit ist äquivalent:
+	* $F_1 \Rightarrow F_2$: 2 Fälle:
+		* $a \vee b = 1$: $L_2$ mit $h = 0$ erfüllt
+		* $c \vee d = 1$: $L_2$ mit $h = 1$ erfüllt
+	* $F_2 \Rightarrow F_2$: 2 Fälle:
+		* $h = 0 \Rightarrow (a \vee b) = 1$
+		* $h = 1 \Rightarrow (c \vee d) = 1$
 
-$$ (a_1 \vee a_2 \vee h_1) \wedge (\overline{h_1} \vee a_3 \vee h_2) \wedge \dots \wedge (\overline{h_{n-2}} \vee a_{n-1} \vee a_n) $$
-Hierbei sind $h_1 \dots h_{n-2}$ neu eingeführte Hilfsvariablen.
+
+
+Reduktion SAT auf 3SAT
+----------------------
+
+* Allgemein gilt: Um eine SAT-Klausel
+  $(a_1 \vee a_2 \vee \dots \vee a_n)$ nach 3SAT zu konvertieren, genügt es, sie wie folgt zu schreiben:
+  $$ (a_1 \vee a_2 \vee h_1) \wedge (\overline{h_1} \vee a_3 \vee h_2) \wedge \dots \wedge (\overline{h_{n-2}} \vee a_{n-1} \vee a_n) $$
+* $h_1 \dots h_{n-2}$ sind hierbei neu eingeführte Hilfsvariablen
+* SAT liegt in NP $\Rightarrow$ 3SAT liegt als Spezialfall von SAT in NP
+* Laufzeit der Reduktion SAT $\rightarrow$ 3SAT ist polynomiell <!-- mündl. Erklärung -->
+* $\Rightarrow$ 3SAT ist NP-vollständig
+
+
 
 Wichtige NP-vollständige Probleme
 =================================
@@ -400,7 +430,7 @@ Zusammenfassung
 ---------------
 
 * Alle NP-Probleme können in Polyzeit auf NP-vollständigen Probleme reduziert werden.
-* Wichtige Beispiele für NP-vollständige Probleme sind SAT, 3-SAT, INDSET, 0/1-PROG und TSP
+* Wichtige Beispiele für NP-vollständige Probleme sind SAT, 3SAT, INDSET, 0/1-PROG und TSP
 * Analoge Probleme existieren auch in diversen anderen Klassen
 * P$\neq$NP ist zwar *unbewiesen* aber es gibt sehr gute *Indizien* dafür
 * Die Implikationen von P=NP sind gravierend, aber nicht zwingend katastrophal
