@@ -30,11 +30,6 @@ Turingmaschine
 Turingmaschine
 --------------
 
-![ http://www.legoturingmachine.org](img/lego_tm.png)
-
-Turingmaschine
---------------
-
 ![http://www.legoturingmachine.org](img/lego_tm.png)
 
 Turingmaschine formal
@@ -201,14 +196,15 @@ Wichtige NP-vollständige Probleme
 INDSET
 ------
 
-> Besitzt ein Graph $G$ mindestens $n$ paarweise nicht über eine Kante verbundene Knoten?
+> Besitzt ein Graph $G$ mindestens $k$ paarweise nicht über eine Kante verbundene Knoten (=stabile Menge)?
 
 INDSET ist NP-vollständig. Hierzu definieren wir eine Transformation beliebiger 3SAT-Instanzen
 zu Graphen:
 
-* Erzeuge für jede Klausel eine Clique, deren Knoten jeweils eine gültige Belegung repräsentieren.
+* Erzeuge für jede Klausel einen vollständig verbundenen Teilgraph (=Clique), dessen Knoten jeweils
+  eine gültige Belegung repräsentieren.
 * Verbinde alle nicht verbundenen Knoten, die gemeinsam zu einer widersprüchlichen Belegung führen würden.
-* Bestimme nun eine stabile Menge der Größe $n$. Deren Knoten kodieren nun eine gültige Belegung für die 3SAT-Instanz.
+* Bestimme nun eine stabile Menge der Größe $k$. Deren Knoten kodieren nun eine gültige Belegung für die 3SAT-Instanz.
 
 <!-- Ab hier: Beispiel an Tafel (TODO) -->
 
@@ -265,7 +261,7 @@ Sonstige
 --------
 
 * NPI (NP-Intermediate)
-	* NP-Problene, weder in P, noch NP-vollständig
+	* NP-Probleme, weder in P, noch NP-vollständig
 	* existiert wenn P $\neq$ NP
 * BQP, QMA, …
 	* Analoge Klassen für Quantencomputer
@@ -280,7 +276,7 @@ P $\neq$ NP
 -----------
 
 * Unüberschaubar viele Probleme in P und NP. Trotz enormem Aufwand nicht eine einzige Reduktion.
-* Reduktionen oft um ein $\epsilon$ nicht polynomiell. Warum, wenn P = NP?
+* Reduktionen oft um ein $\varepsilon$ nicht polynomiell. Warum, wenn P = NP?
 * Existenzbeweise meist leichter als Nichtexistenzbeweise. Deswegen schwer?
 * NL $\subset$ PSPACE, eine der Untermengenrelationen dazwischen **muss** also echt sein.
 
@@ -396,6 +392,20 @@ Umgang mit NP-vollständigen Problemen
 ![](http://imgs.xkcd.com/comics/travelling_salesman_problem.png)
 
 <!-- xkcd 399-->
+
+Zusammenfassung
+===============
+
+Zusammenfassung
+---------------
+
+* Alle NP-Probleme können in Polyzeit auf NP-vollständigen Probleme reduziert werden.
+* Wichtige Beispiele für NP-vollständige Probleme sind SAT, 3-SAT, INDSET, 0/1-PROG und TSP
+* Analoge Probleme existieren auch in diversen anderen Klassen
+* P$\neq$NP ist zwar *unbewiesen* aber es gibt sehr gute *Indizien* dafür
+* Die Implikationen von P=NP sind gravierend, aber nicht zwingend katastrophal
+* In der Realität sind NP-vollständige Probleme bisweilen gut zu meistern
+
 
 Quellenangaben
 ==============
