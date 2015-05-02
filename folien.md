@@ -101,11 +101,11 @@ Die Klasse NP (alternativ)
 --------------------------
 
 * Alle Entscheidungsprobleme die von einer NDTM $\mathcal{M}$ in Polynomialzeit gelöst werden
-* $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt, sodass $\mathcal{M}$ in $F$ hält.
+* $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt, sodass $\mathcal{M}$ in einem der aktzeptierenden Zustände ($F$) hält.
 	* es gilt in diesem Fall $\mathcal{M}(x) = 1$
 * Gibt es keine Sequenz für die $\mathcal{M}$ in $F$ hält, gilt $\mathcal{M}(x) = 0$
 * Ursprüngliche Definition, deswegen auch NP (nondeterministic polynomial time)
-* Beide Definitionen äquivalent, da die Sequenz von Entscheidungen, die zu $F$ führt als Verifizierer betrachtet werden kann
+* Beide Definitionen äquivalent, da die Sequenz von Entscheidungen, die zu $F$ führt als Zertifikat betrachtet werden kann
 
 Die Klasse coNP
 ---------------
@@ -119,6 +119,7 @@ Reduktion
 ---------
 
 * $A$ heißt reduzierbar auf $B$, wenn es einen Algorithmus gibt, der aus jedem Problem aus $A$ in Polynomialzeit ein Problem aus $B$ macht
+* Man schreibt dann $A \preceq B$
 * Gibt es einen Algorithmus zur Lösung von $B$ und gilt $A \preceq B$, so kann dieser auch $A$ lösen
 * Man sagt $B$ ist mindestens so schwer wie $A$
 
@@ -128,7 +129,7 @@ NP-Vollständigkeit
 * Gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
 * Liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
 * Um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein NP-schweres $L$ zu zeigen
-* Ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $A'$ in coNP logischerweise coNP-schwer
+* Ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem $\overline{A}$ in coNP logischerweise coNP-schwer
 
 <!-- 
 Adrian, Quellen bisher
@@ -265,7 +266,7 @@ Traveling Salesman (TSP)
 
 * In NP: die Reihenfolge der Städte kann als Zertifikat betrachtet werden
 * NP-Vollständig: HAMILTON $\preceq$ TSP, indem man jede Kante des Graphs mit 1 gewichtet
-	* Gibt es einen Pfad der Länge $l = |V|$ so hat der Graph einen Hamiltonkreis
+	* Gibt es einen Pfad der Länge $l = |V|+1$ so hat der Graph einen Hamiltonkreis
 
 <!-- Adrian -->
 
@@ -342,13 +343,13 @@ Resolution Beispiel
 ---------------------------------------
 
 <!-- evt ein ähnliches Bild selber machen -->
-![https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/res-beweis.gif](img/res-beweis.png)
+![](img/res-beweis.png)
 
 Resolution als Indiz für coNP $\neq$ NP
 ---------------------------------------
 
 * 1985 bewies Haken eine untere Schranke für die Größe des Resolutionsbeweises für das Taubenschlagprinzip
-* Diese ist $(1.49^{0.01})^n$ und unabhängig vom gewählten Algorithmus
+* Diese ist $(1.49^{0.01})^n = (1,00399572)^n$ und unabhängig vom gewählten Algorithmus
 * Aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch für andere Probleme gezeigt
 	* mittels Resolution ist coNP = NP nicht beweisbar
 	* $\Rightarrow$ Indiz für coNP $\neq$ NP
@@ -397,7 +398,7 @@ Probleme zwischen P und NP-Vollständig
 --------------------------------------
 
 * Gilt P $\neq$ NP so gibt es eine Klasse NP-intermediate (NPI) für die gilt:
-	* $A \in$ NPI gdw. $A \in$ NP, $A \notin$ P und $A$ ist nicht NP-Schwer
+	* $A \in$ NPI $\Leftrightarrow A \in$ NP, $A \notin$ P und $A$ ist nicht NP-Schwer
 * Wurde von Richard Ladner 1975 bewiesen
 * Er konstruierte ein künstliches Problem welches unter der Annahme P $\neq$ NP in NPI liegt
 * Es ist nicht sicher ob es "natürliche" Probleme in NPI gibt
