@@ -2,6 +2,17 @@
 % 6. Mai 2015
 % Adrian Hein, Florian Weber
 
+Motivation
+==========
+
+Motivation
+----------
+
+* Einführung/Wiederholung wichtiger Begrifflichkeiten und Methoden
+* Überblick über verschiedene Komplexitätsklassen
+* Vorstellung wichtiger Probleme
+* Bedeutung für die Praxis
+
 Einführung
 ==========
 
@@ -160,7 +171,7 @@ Reduktion * auf SAT
 	* gültige Annahme, da in $O(f(n)^2)$ simulierbar
 * Sei $Q$ die Menge der Zustände von $\mathcal{M}$
 * Sei $\Gamma$ das Bandalphabet von $\mathcal{M}$
-* Sei $\langle a, b, q\rangle_i \in Q\times Q\times \Gamma$ der Snapshot von $\mathcal{M}$ in Schritt $i$
+* Sei $\langle a, b, q\rangle_i \in \Gamma\times \Gamma\times Q$ der Snapshot von $\mathcal{M}$ in Schritt $i$
 
 Reduktion * auf SAT
 -------------------
@@ -197,7 +208,7 @@ Reduktion SAT auf 3SAT
 	* $F_1 \Rightarrow F_2$: 2 Fälle:
 		* $a \vee b = 1$: $L_2$ mit $h = 0$ erfüllt
 		* $c \vee d = 1$: $L_2$ mit $h = 1$ erfüllt
-	* $F_2 \Rightarrow F_2$: 2 Fälle:
+	* $F_2 \Rightarrow F_1$: 2 Fälle:
 		* $h = 0 \Rightarrow (a \vee b) = 1$
 		* $h = 1 \Rightarrow (c \vee d) = 1$
 
