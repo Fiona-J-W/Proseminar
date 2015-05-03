@@ -1,0 +1,1092 @@
+\documentclass[ignorenonframetext,]{beamer}
+\usetheme{Singapore}
+\usecolortheme{beaver}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{:}
+\setbeamercolor{caption name}{fg=normal text.fg}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{lmodern}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+    \newcommand{\euro}{€}
+  \else
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+      \fi
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% Comment these out if you don't want a slide with just the
+% part/section/subsection/subsubsection title:
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \let\insertsectionnumber\relax
+  \let\sectionname\relax
+  \frame{\sectionpage}
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+\usepackage[german]{babel}
+
+\title{Die P $\neq$ NP-Vermutung}
+\author{6. Mai 2015}
+\date{Adrian Hein, Florian Weber}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Motivation}\label{motivation}
+
+\begin{frame}{Motivation}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Einführung/Wiederholung wichtiger Begrifflichkeiten und Methoden
+\item
+  Überblick über verschiedene Komplexitätsklassen
+\item
+  Vorstellung wichtiger Probleme
+\item
+  Bedeutung für die Praxis
+\end{itemize}
+
+\end{frame}
+
+\section{Einführung}\label{einfuxfchrung}
+
+\begin{frame}{Turingmaschine}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Mathematische Abstraktion eines Computers
+\item
+  Besteht aus:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Steuerwerk
+  \item
+    unendlich langes Steuerband
+  \item
+    Lese- und Schreibkopf
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Turingmaschine}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Pro Schritt wird:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    ein Zeichen gelesen
+  \item
+    ein Zeichen geschrieben
+  \item
+    eine Bewegung ausgeführt
+  \end{itemize}
+\item
+  Jeder Schritt ist nur abhängig von:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    aktuellem Zeichen auf dem Band
+  \item
+    aktuellem Zustand der TM
+  \end{itemize}
+\item
+  Eine TM hat endlich viele Zustände
+\item
+  Man kann Zustände als Endzustände definieren
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Turingmaschine}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{img/lego_tm.png}
+\caption{http://www.legoturingmachine.org}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Turingmaschine formal}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Formal besteht eine TM aus einem Tupel
+  $\mathcal{M}:=\{ Q, \Sigma, \Gamma, \delta, q_0, F \}$ mit:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $Q$, die endlichen Zustandsmenge
+  \item
+    $\Sigma$, das endlichen Eingabealphabet
+  \item
+    $\Gamma$, das endliche Bandalphabet und es gilt
+    $\Sigma \subset \Gamma$
+  \item
+    $\delta\colon (Q \setminus F)\times \Gamma \to Q \times \Gamma \times \{L, 0, R\}$,
+    der (partiellen) Überführungsfunktion
+  \item
+    $q_0 \in Q$, dem Anfangszustand
+  \item
+    $\square \in \Gamma\setminus\Sigma$, das leere Feld
+  \item
+    $F \subseteq Q$, die Menge der akzeptierenden Zustände
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Turingmaschine (nichtdeterministisch)}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Ähnlich der deterministischen TM
+\item
+  NDTM hat allerdings zwei Übergangsfunktionen $\delta_0$ und $\delta_1$
+\item
+  Endet eine Sequenz von Entscheidungen in $F$ gilt die Eingabe als
+  akzeptiert
+\item
+  Im Gegensatz zur deterministischen TM nicht ohne Weiteres realisierbar
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Turingmaschine (Mehrband)}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Hat anstatt einem Band mehrere mit jeweils einem Lese- und
+  Schreibkopf\\\includegraphics{img/TM1.png}
+\item
+  Kann durch eine TM mit einem Band simuliert
+  werden\\\includegraphics{img/TM2.png}
+\item
+  Mehrband TMs sind genauso mächtig wie normale TMs aber evt.
+  anschaulicher
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Die Klasse P}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Enthält alle Entscheidungsprobleme die in Polynomialzeit von einer TM
+  lösbar sind
+\item
+  Probleme in P gelten als praktisch lösbar
+\item
+  Ist unter Komplementbildung abgeschlossen
+\item
+  Beispiele sind:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Lineare Programmierung/Optimierung
+  \item
+    PRIMES (AKS-Primzahltest)
+  \item
+    HORNSAT
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Die Klasse NP (formal)}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Eine Sprache $L \subseteq \{0, 1\}^*$ liegt in NP, wenn es:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    ein Polynom $p: \mathbb{N} \rightarrow \mathbb{N}$
+  \item
+    sowie eine in Polynomialzeit laufende TM $\mathcal{M}$, den
+    sogenannten Verifizierer für $L$, gibt
+  \item
+    sodass für jedes $x \in \{0, 1\}^*$ gilt:
+
+    \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item
+      $x \in L \Leftrightarrow \exists u \in \{0, 1\}^{p(|x|)}$, sodass
+      $\mathcal{M}(x, u) = 1$
+    \end{itemize}
+  \end{itemize}
+\item
+  In diesem Fall nennt man $u$ ein Zertifikat für $x$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Die Klasse NP (alternativ)}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Alle Entscheidungsprobleme die von einer NDTM $\mathcal{M}$ in
+  Polynomialzeit gelöst werden
+\item
+  $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt,
+  sodass $\mathcal{M}$ in einem der aktzeptierenden Zustände ($F$) hält.
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    es gilt in diesem Fall $\mathcal{M}(x) = 1$
+  \end{itemize}
+\item
+  Gibt es keine Sequenz für die $\mathcal{M}$ in $F$ hält, gilt
+  $\mathcal{M}(x) = 0$
+\item
+  Ursprüngliche Definition, deswegen auch NP (nondeterministic
+  polynomial time)
+\item
+  Beide Definitionen äquivalent, da die Sequenz von Entscheidungen, die
+  zu $F$ führt als Zertifikat betrachtet werden kann
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Die Klasse coNP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Alle Sprachen, deren Komplement in NP liegt
+\item
+  NICHT das Komplement zu NP
+\item
+  Beispiel: Kontradiktion
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reduktion}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  $A$ heißt reduzierbar auf $B$, wenn es einen Algorithmus gibt, der aus
+  jedem Problem aus $A$ in Polynomialzeit ein Problem aus $B$ macht
+\item
+  Man schreibt dann $A \preceq B$
+\item
+  Gibt es einen Algorithmus zur Lösung von $B$ und gilt $A \preceq B$,
+  so kann dieser auch $A$ lösen
+\item
+  Man sagt $B$ ist mindestens so schwer wie $A$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{NP-Vollständigkeit}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Gilt $L \preceq L',\ \forall L \in$ NP, so nennt man $L'$ NP-schwer
+\item
+  Liegt $L'$ selber auch in NP nennt man $L'$ NP-vollständig
+\item
+  Um NP-schwere für $L'$ zu zeigen genügt es $L \preceq L'$ für ein
+  NP-schweres $L$ zu zeigen
+\item
+  Ist ein Problem $A$ NP-schwer, so ist das entsprechende Problem
+  $\overline{A}$ in coNP logischerweise coNP-schwer
+\end{itemize}
+
+\end{frame}
+
+\section{Cook-Levin Theorem}\label{cook-levin-theorem}
+
+\begin{frame}{Stephen Cook und Leonid Levin}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{img/cook_levin.png}
+\caption{Stephen Cook (CC-BY-SA 3.0, Jiří Janíček), Leonid Levin
+(CC-BY-SA 3.0, Sergio01)}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Konjunktive Normalform}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Boolsche Funktionen der Form
+  \[(a \vee b \vee c) \wedge (d \vee e) \wedge (f \vee g \vee h \vee i)\]
+  stehen in \textbf{konjunktiver Normalform}
+\item
+  Lösungen stellen alle Belegungen dar, die zu 1 evaluieren
+\item
+  Das Entscheidungsproblem, ob es eine Lösung gibt, ist als \textbf{SAT}
+  (von „satisfiable``) bekannt
+\item
+  Der Spezialfall, bei dem jede Teilklausel genau drei Variablen
+  beinhaltet, heißt \textbf{3SAT}:
+  \[(a \vee b \vee c) \wedge (d \vee e \vee f) \wedge \dots\]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Boolsche Funktionen}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Jede boolsche Funktion lässt sich in konjunktiver Normalform
+  darstellen
+\item
+  TMs die Sprachen entscheiden, sind boolsche Funktionen
+\item
+  Die Größe einer KNF für $n$ Variablen liegt in $O(n \cdot 2^n)$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reduktion * auf SAT}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  $O(n \cdot 2^n)$ offensichtlich zu groß
+\item
+  Sei $\mathcal{M}$ eine TM die eine NP-vollständige Sprache entscheidet
+  und die
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    ein Eingabe- und ein Ausgabe/Arbeitsband habe
+  \item
+    bei der die Position des Kopfes in Schritt $i$ nur von der Länge der
+    Eingabe abhängt
+  \item
+    gültige Annahme, da in $O(f(n)^2)$ simulierbar
+  \end{itemize}
+\item
+  Sei $Q$ die Menge der Zustände von $\mathcal{M}$
+\item
+  Sei $\Gamma$ das Bandalphabet von $\mathcal{M}$
+\item
+  Sei $\langle a, b, q\rangle_i \in \Gamma\times \Gamma\times Q$ der
+  Snapshot von $\mathcal{M}$ in Schritt $i$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reduktion * auf SAT}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Snapshots können offensichtlich als Zeichenketten konstanter Länge
+  kodiert werden.
+\item
+  Ein Snapshot $S_i$ hängt ab von:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $S_{i-1}$
+  \item
+    einem Zeichen fester Position der Eingabe
+  \item
+    dem letzten Snapshot an der selben Stelle
+  \end{itemize}
+\item
+  Es gibt für jedes $i$ genau einen korrekten Snapshot
+\item
+  Daraus folgt: Es gibt eine Funktion $f$, die zwei Snapshots und eine
+  Position auf dem Eingabeband auf einen neuen Snapshot abbilden:
+  \[S_i = f(S_{i-1}, S_{\mathrm{prev}(i)}, E_{\mathrm{inputpos}(i)})\]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reduktion * auf SAT}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Um eine Lösung für die betrachtete Sprache zu finden, muss man eine
+  Abfolge von TM-Schritten finden, die zum Ergebnis führt.
+\item
+  Die einzelnen Schritte (und damit die Snapshotkette) kodieren eine
+  Lösung, sind aber zunächst unbekannt.
+\item
+  Die Snapshotkette lässt sich aber als polynomielle KNF schreiben.
+\item
+  Angenommen, es gäbe einen Polyzeit-Entscheider für SAT, so könnte
+  dieser damit auch die Kette von Snapshots für andere Probleme finden,
+  und damit diese in Polyzeit entscheiden!
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reduktion SAT auf 3SAT}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Wir möchten die Klausel $F_1 = (a \vee b \vee c \vee d)$ mit Lösung
+  $L_1$ in 3SAT-Klauseln zerlegen
+\item
+  Sei $h$ eine neu eingeführte Hilfsvariable
+\item
+  Dann ist $F_2 = (a \vee b \vee h) \wedge (\overline{h} \vee c \vee d)$
+  mit Lößung $L_2$ eine äquivalente Formel
+\item
+  Erfüllbarkeit ist äquivalent:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $F_1 \Rightarrow F_2$: 2 Fälle:
+
+    \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item
+      $a \vee b = 1$: $L_2$ mit $h = 0$ erfüllt
+    \item
+      $c \vee d = 1$: $L_2$ mit $h = 1$ erfüllt
+    \end{itemize}
+  \item
+    $F_2 \Rightarrow F_1$: 2 Fälle:
+
+    \begin{itemize}
+    \itemsep1pt\parskip0pt\parsep0pt
+    \item
+      $h = 0 \Rightarrow (a \vee b) = 1$
+    \item
+      $h = 1 \Rightarrow (c \vee d) = 1$
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Reduktion SAT auf 3SAT}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Allgemein gilt: Um eine SAT-Klausel
+  $(a_1 \vee a_2 \vee \dots \vee a_n)$ nach 3SAT zu konvertieren, genügt
+  es, sie wie folgt zu schreiben:
+  \[ (a_1 \vee a_2 \vee h_1) \wedge (\overline{h_1} \vee a_3 \vee h_2) \wedge \dots \wedge (\overline{h_{n-2}} \vee a_{n-1} \vee a_n) \]
+\item
+  $h_1 \dots h_{n-2}$ sind hierbei neu eingeführte Hilfsvariablen
+\item
+  SAT liegt in NP $\Rightarrow$ 3SAT liegt als Spezialfall von SAT in NP
+\item
+  Laufzeit der Reduktion SAT $\rightarrow$ 3SAT ist polynomiell 
+\item
+  $\Rightarrow$ 3SAT ist NP-vollständig
+\end{itemize}
+
+\end{frame}
+
+\section{Wichtige NP-vollständige
+Probleme}\label{wichtige-np-vollstuxe4ndige-probleme}
+
+\begin{frame}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{img/xkcd_np_complete_big.png}
+\caption{CC-BY-NC 2.5, Randall Munroe, https://xkcd.com/287/}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{INDSET}
+
+\begin{quote}
+Besitzt ein Graph $G$ mindestens $k$ paarweise nicht über eine Kante
+verbundene Knoten (=stabile Menge)?
+\end{quote}
+
+INDSET ist NP-vollständig. Hierzu definieren wir eine Transformation
+beliebiger 3SAT-Instanzen zu Graphen:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Erzeuge für jede Klausel einen vollständig verbundenen Teilgraph
+  (=Clique), dessen Knoten jeweils eine gültige Belegung repräsentieren.
+\item
+  Verbinde alle nicht verbundenen Knoten, die gemeinsam zu einer
+  widersprüchlichen Belegung führen würden.
+\item
+  Bestimme nun eine stabile Menge der Größe $k$. Deren Knoten kodieren
+  nun eine gültige Belegung für die 3SAT-Instanz.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{0/1 IPROG}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Gegeben: $\mathcal{M}$ lineare Ungleichungen über $n$ Variablen
+\item
+  Gesucht: eine Lösung für das System wobei die Variablen nur 0 oder 1
+  annehmen können
+\item
+  In NP: die Belegung der Variablen kann als Zertifikat gesehen werden
+\item
+  NP-vollständig: SAT $\preceq$ 0/1 IPROG, da jede Klausel als
+  Ungleichung aufgefasst werden kann
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $u_1 \vee \overline{u_2} \vee \overline{u_3}$ kann ausgedrückt
+    werden durch $u_1 + (1 - u_2) + (1 - u_3) \geq 1$
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Traveling Salesman (TSP)}
+
+\begin{quote}
+Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
+\end{quote}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  In NP: die Reihenfolge der Städte kann als Zertifikat betrachtet
+  werden
+\item
+  NP-Vollständig: HAMILTON $\preceq$ TSP, indem man jede Kante des
+  Graphs mit 1 gewichtet
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Gibt es einen Pfad der Länge $l = |V|+1$ so hat der Graph einen
+    Hamiltonkreis
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{Andere Klassen}\label{andere-klassen}
+
+\begin{frame}{EXP und NEXP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Probleme deren Zertifikat in exponentieller Zeit verfiziert bzw.
+  gefunden werden kann.
+\item
+  In vieler Hinsicht analog zu P und NP, aber in der Praxis weniger
+  interessant.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Platzbasierte}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  L $\subseteq$ NL
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    logarithmischer Platz
+  \end{itemize}
+\item
+  PSPACE = NPSPACE
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    polynomieller Platz
+  \end{itemize}
+\item
+  EXPSPACE = NEXPSPACE
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    exponentieller Platz
+  \end{itemize}
+\end{itemize}
+
+Es gilt:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  L $\subseteq$ NL $\subseteq$ P $\subseteq$ NP $\subseteq$ PSPACE
+\item
+  NL $\subset$ PSPACE
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Sonstige}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  NPI (NP-Intermediate)
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    NP-Probleme, weder in P, noch NP-vollständig
+  \item
+    existiert wenn P $\neq$ NP
+  \end{itemize}
+\item
+  BQP, QMA, \ldots{}
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Analoge Klassen für Quantencomputer
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{Indizien}\label{indizien}
+
+\begin{frame}{P $\neq$ NP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Unüberschaubar viele Probleme in P und NP. Trotz enormem Aufwand nicht
+  eine einzige Reduktion.
+\item
+  Reduktionen oft um ein $\varepsilon$ nicht polynomiell. Warum, wenn P
+  = NP?
+\item
+  Existenzbeweise meist leichter als Nichtexistenzbeweise. Deswegen
+  schwer?
+\item
+  NL $\subset$ PSPACE, eine der Untermengenrelationen dazwischen
+  \textbf{muss} also echt sein.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{coNP $\neq$ NP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Bisher wurde noch für kein coNP-schweres Problem ein polynomielles
+  Zertifikat gefunden
+\item
+  Es konnte noch für kein NP-schweres Problem nachgewiesen werden, dass
+  es in coNP liegt
+\item
+  Es konnte noch für kein Problem aus NP $\cap$ coNP NP-schwere bzw.
+  coNP-schwere nachgewiesen werden
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Resolution als Indiz für coNP $\neq$ NP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Resolution prüft ob eine KNF eine Kontradiktion ist
+\item
+  Wähle 2 Klauseln $C_1, C_2$, sodass ein Literal $u$ in $C_1$ und seine
+  Negierung $\overline{u}$ in $C_2$ vorkommen
+\item
+  Bilde eine neue Klausel
+  $C_3 = C_1 \backslash \{u\} \vee C_2 \backslash \{\overline{u}\}$
+\item
+  $C_1 = (x \vee \overline{y} \vee z)$ und $C_2 = (y \vee z)$ werden zu
+  $C_3 = (x \vee z)$
+\item
+  Es gilt $C_3 = false \Rightarrow C_1 \wedge C_2 = false$
+\item
+  Kann man eine leere Klausel herleiten ist die Formel eine
+  Kontradiktion
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Resolution Beispiel}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{img/res-beweis.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Resolution als Indiz für coNP $\neq$ NP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  1985 bewies Haken eine untere Schranke für die Größe des
+  Resolutionsbeweises für das Taubenschlagprinzip
+\item
+  Diese ist $(1.49^{0.01})^n = (1,00399572)^n$ und unabhängig vom
+  gewählten Algorithmus
+\item
+  Aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch
+  für andere Probleme gezeigt
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    mittels Resolution ist coNP = NP nicht beweisbar
+  \item
+    $\Rightarrow$ Indiz für coNP $\neq$ NP
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{Implikationen}\label{implikationen}
+
+\begin{frame}{Philosophisch}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  In den Naturwissenschaften wären Hypothesen mit vergleichbarer
+  Faktenlage als Theorien anerkannt.
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    „nur`` ein Problem weil Informatik eine Strukturwissenschaft ist
+  \end{itemize}
+\item
+  Folgen oft völlig unintuitiv:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Warum sollte es keine Suchprobleme geben, die sich nicht besser als
+    mit brute-force lösen lassen?
+  \item
+    Insbesondere bei nichtdeterministischen TMs: Polyzeitreduktion
+    praktisch nicht vorstellbar.
+  \item
+    Alle Probleme in NP (TODO: P-vollständig?) wären vergleichbar
+    schwer, es gäbe keine Klasse NPI
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Kryptographisch}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Nicht \textbf{zwingend} katastrophal
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Feste aber große Exponenten reichen vermutlich auch:
+    $2^{512} \ll 512^{100}$
+  \item
+    Heutige Krypto meist nicht NP-vollständig (Faktorisierung in NPI
+    vermutet)
+  \item
+    Quantencomputer sind hier eine \textbf{viel} realere Bedrohung.
+    ($\rightarrow$ Shor-Algorithmus)
+  \end{itemize}
+\item
+  Andererseits: Passwort raten, leicht gemacht?
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Gibt es ein Passphrase der Länge $\le n$ die diese Datei
+    entschlüsselt? $\in$ NP
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{coNP $\stackrel{?}{=}$ NP}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Aus P = NP folgt automatisch coNP = NP
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Umkehrung gilt nicht automatisch
+  \end{itemize}
+\item
+  Allerding folgt aus coNP $\neq$ NP automatisch P $\neq$ NP:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    man wählt ein NP-vollständiges Problem $L$
+  \item
+    das Komplement $\overline{L}$ von $L$ liegt laut Definition in coNP
+  \item
+    würde P = NP gelten, gilt $L \in$ P
+  \item
+    da P unter Komplementbildung abgeschlossen ist gilt
+    $\overline{L} \in$ P
+  \item
+    da gilt P = NP gilt $\overline{L} \in$ NP
+  \item
+    daraus würde folgen coNP = NP was ein Wiederspruch ist
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Probleme zwischen P und NP-Vollständig}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Gilt P $\neq$ NP so gibt es eine Klasse NP-intermediate (NPI) für die
+  gilt:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $A \in$ NPI $\Leftrightarrow A \in$ NP, $A \notin$ P und $A$ ist
+    nicht NP-Schwer
+  \end{itemize}
+\item
+  Wurde von Richard Ladner 1975 bewiesen
+\item
+  Er konstruierte ein künstliches Problem welches unter der Annahme P
+  $\neq$ NP in NPI liegt
+\item
+  Es ist nicht sicher ob es ``natürliche'' Probleme in NPI gibt
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Vermutete Probleme in NPI}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Man vermutet, dass die Primfaktorzerlegung in NPI liegt
+\item
+  Bisher noch kein Algorithmus in Polynomialzeit gefunden
+\item
+  Noch kein Beweis für NP-Schwere
+\item
+  Aktuelle Kryptographie baut darauf auf (RSA)
+\end{itemize}
+
+\end{frame}
+
+\section{Umgang mit NP-vollständigen
+Problemen}\label{umgang-mit-np-vollstuxe4ndigen-problemen}
+
+\begin{frame}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{img/dont_panic.png}
+\caption{http://everfalling.deviantart.com/art/DON-T-PANIC-15975789}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Umgang mit NP-vollständigen Problemen}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Exisitieren vielleicht gute Näherungslösungen?
+\item
+  Ist der Worst-Case wirklich wahrscheinlich?
+\item
+  Ist $n$ wirklich so groß, dass NP-Vollständigkeit ein Problem
+  darstellt?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Umgang mit NP-vollständigen Problemen}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Gibt es vielleicht bessere, nicht NP-schwere Modelierungen?
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{img/travelling_salesman_problem.png}
+\end{figure}
+
+\end{frame}
+
+\section{Zusammenfassung}\label{zusammenfassung}
+
+\begin{frame}{Zusammenfassung}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Alle NP-Probleme können in Polyzeit auf NP-vollständigen Probleme
+  reduziert werden.
+\item
+  Wichtige Beispiele für NP-vollständige Probleme sind SAT, 3SAT,
+  INDSET, 0/1-PROG und TSP
+\item
+  Analoge Probleme existieren auch in diversen anderen Klassen
+\item
+  P$\neq$NP ist zwar \emph{unbewiesen} aber es gibt sehr gute
+  \emph{Indizien} dafür
+\item
+  Die Implikationen von P=NP sind gravierend, aber nicht zwingend
+  katastrophal
+\item
+  In der Realität sind NP-vollständige Probleme bisweilen gut zu
+  meistern
+\end{itemize}
+
+\end{frame}
+
+\section{Quellenangaben}\label{quellenangaben}
+
+\begin{frame}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  http://de.wikipedia.org/wiki/P\_\%28Komplexit\%C3\%A4tsklasse\%29
+\item
+  http://de.wikipedia.org/wiki/Turingmaschine
+\item
+  http://de.wikipedia.org/wiki/Polynomialzeit
+\item
+  https://complexityzoo.uwaterloo.ca/Complexity\_Zoo:P\#p
+\item
+  http://de.wikipedia.org/wiki/Lineare\_Optimierung
+\item
+  http://de.wikipedia.org/wiki/AKS-Primzahltest
+\item
+  http://de.wikipedia.org/wiki/Horn-Formel
+\item
+  http://de.wikipedia.org/wiki/Reduktion\_\%28Theoretische\_Informatik\%29
+\item
+  http://en.wikipedia.org/wiki/Co-NP
+\item
+  https://complexityzoo.uwaterloo.ca/Complexity\_Zoo:C\#conp
+\item
+  https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Buch: Aussagenlogik: Deduktion und Algorithmen: Deduktion und
+  Algorithmen von Theodor Lettmann
+  (https://books.google.de/books?id=6ZGoBgAAQBAJ\&pg=PA150\&lpg=PA150\&dq=resolutionsbeweis+untere+schranke\&source=bl\&ots=wIW90vsapu\&sig=tGPO4iMYRVDXtZYi6jAepeKp0\_8\&hl=de\&sa=X\&ei=itQ4VazXNIXpaKm2gcAG\&ved=0CDYQ6AEwAw\#v=onepage\&q=resolutionsbeweis\%20untere\%20schranke\&f=false)
+\item
+  http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf
+\item
+  http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/46927-f97/slides/Lec4/sld033.htm
+\item
+  http://www.cosy.sbg.ac.at/\textasciitilde{}held/teaching/wiss\_arbeiten/slides\_02-03/kmrr.pdf
+\item
+  http://hackvalue.de/files/tsp.pdf
+\item
+  http://de.wikipedia.org/wiki/Satz\_von\_Ladner
+\item
+  http://de.wikipedia.org/wiki/Primfaktorzerlegung
+\item
+  http://en.wikipedia.org/wiki/NP-intermediate
+\end{itemize}
+
+\end{frame}
+
+\end{document}
