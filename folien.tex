@@ -1,6 +1,6 @@
 \documentclass[ignorenonframetext,]{beamer}
-\usetheme{Singapore}
-\usecolortheme{beaver}
+\usetheme{Rochester}
+%\usecolortheme{beaver}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{:}
 \setbeamercolor{caption name}{fg=normal text.fg}
@@ -43,16 +43,16 @@
   \let\partname\relax
   \frame{\partpage}
 }
-\AtBeginSection{
-  \let\insertsectionnumber\relax
-  \let\sectionname\relax
-  \frame{\sectionpage}
-}
-\AtBeginSubsection{
-  \let\insertsubsectionnumber\relax
-  \let\subsectionname\relax
-  \frame{\subsectionpage}
-}
+% \AtBeginSection{
+  % \let\insertsectionnumber\relax
+  % \let\sectionname\relax
+  % \frame{\sectionpage}
+% }
+% \AtBeginSubsection{
+  % \let\insertsubsectionnumber\relax
+  % \let\subsectionname\relax
+  % \frame{\subsectionpage}
+% }
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
@@ -60,18 +60,35 @@
 \setcounter{secnumdepth}{0}
 \usepackage[german]{babel}
 
+\usepackage{hyperref}
+
 \title{Die P $\neq$ NP-Vermutung}
-\author{6. Mai 2015}
-\date{Adrian Hein, Florian Weber}
+\author{Adrian Hein, Florian Weber}
+\date{6. Mai 2015}
 
 \begin{document}
 \frame{\titlepage}
 
-\begin{frame}
-\tableofcontents[hideallsubsections]
+\begin{frame}{Themen}
+%\tableofcontents[hideallsubsections]
+%Sadly the default TOC is horribly broken regarding vertical space, so let's do it by hand:
+
+\begin{itemize}
+	\item Motivation
+	\item Einführung
+	\item Das Cook-Levin Theorem
+	\item Wichtige NP-vollständige Probleme
+	\item Andere Komplexitätsklassen
+	\item Indizien
+	\item Implikationen
+	\item Umgang mit NP-vollständigen Problemen
+	\item Zusammenfassung
+	\item Quellen
+\end{itemize}
 \end{frame}
 
-\section{Motivation}\label{motivation}
+\section{Motivation}
+%\label{motivation}
 
 \begin{frame}{Motivation}
 
@@ -89,9 +106,10 @@
 
 \end{frame}
 
+
 \section{Einführung}\label{einfuxfchrung}
 
-\begin{frame}{Turingmaschine}
+\begin{frame}{Einführung}{Turingmaschine}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -113,7 +131,7 @@
 
 \end{frame}
 
-\begin{frame}{Turingmaschine}
+\begin{frame}{Einführung}{Turingmaschine}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -147,7 +165,7 @@
 
 \end{frame}
 
-\begin{frame}{Turingmaschine}
+\begin{frame}{Einführung}{Turingmaschine}
 
 \begin{figure}[htbp]
 \centering
@@ -157,7 +175,7 @@
 
 \end{frame}
 
-\begin{frame}{Turingmaschine formal}
+\begin{frame}{Einführung}{Turingmaschine formal}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -188,7 +206,7 @@
 
 \end{frame}
 
-\begin{frame}{Turingmaschine (nichtdeterministisch)}
+\begin{frame}{Einführung}{Turingmaschine (nichtdeterministisch)}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -205,7 +223,7 @@
 
 \end{frame}
 
-\begin{frame}{Turingmaschine (Mehrband)}
+\begin{frame}{Einführung}{Turingmaschine (Mehrband)}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -222,7 +240,7 @@
 
 \end{frame}
 
-\begin{frame}{Die Klasse P}
+\begin{frame}{Einführung}{Die Klasse P}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -249,7 +267,7 @@
 
 \end{frame}
 
-\begin{frame}{Die Klasse NP (formal)}
+\begin{frame}{Einführung}{Die Klasse NP (formal)}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -279,7 +297,7 @@
 
 \end{frame}
 
-\begin{frame}{Die Klasse NP (alternativ)}
+\begin{frame}{Einführung}{Die Klasse NP (alternativ)}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -308,7 +326,7 @@
 
 \end{frame}
 
-\begin{frame}{Die Klasse coNP}
+\begin{frame}{Einführung}{Die Klasse coNP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -322,7 +340,7 @@
 
 \end{frame}
 
-\begin{frame}{Reduktion}
+\begin{frame}{Einführung}{Reduktion}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -340,7 +358,7 @@
 
 \end{frame}
 
-\begin{frame}{NP-Vollständigkeit}
+\begin{frame}{Einführung}{NP-Vollständigkeit}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -360,7 +378,7 @@
 
 \section{Cook-Levin Theorem}\label{cook-levin-theorem}
 
-\begin{frame}{Stephen Cook und Leonid Levin}
+\begin{frame}{Das Cook-Levin Theorem}
 
 \begin{figure}[htbp]
 \centering
@@ -371,7 +389,7 @@
 
 \end{frame}
 
-\begin{frame}{Konjunktive Normalform}
+\begin{frame}{Das Cook-Levin Theorem}{Konjunktive Normalform}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -392,7 +410,7 @@
 
 \end{frame}
 
-\begin{frame}{Boolsche Funktionen}
+\begin{frame}{Das Cook-Levin Theorem}{Boolsche Funktionen}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -407,7 +425,7 @@
 
 \end{frame}
 
-\begin{frame}{Reduktion * auf SAT}
+\begin{frame}{Das Cook-Levin Theorem}{Reduktion * auf SAT}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -438,7 +456,7 @@
 
 \end{frame}
 
-\begin{frame}{Reduktion * auf SAT}
+\begin{frame}{Das Cook-Levin Theorem}{Reduktion * auf SAT}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -467,7 +485,7 @@
 
 \end{frame}
 
-\begin{frame}{Reduktion * auf SAT}
+\begin{frame}{Das Cook-Levin Theorem}{Reduktion * auf SAT}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -487,7 +505,7 @@
 
 \end{frame}
 
-\begin{frame}{Reduktion SAT auf 3SAT}
+\begin{frame}{Das Cook-Levin Theorem}{Reduktion SAT auf 3SAT}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -529,7 +547,7 @@
 
 \end{frame}
 
-\begin{frame}{Reduktion SAT auf 3SAT}
+\begin{frame}{Das Cook-Levin Theorem}{Reduktion SAT auf 3SAT}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -550,10 +568,9 @@
 
 \end{frame}
 
-\section{Wichtige NP-vollständige
-Probleme}\label{wichtige-np-vollstuxe4ndige-probleme}
+\section[Probleme]{Wichtige NP-vollständige Probleme}
 
-\begin{frame}
+\begin{frame}{Wichtige NP-vollständige Probleme}
 
 \begin{figure}[htbp]
 \centering
@@ -563,7 +580,7 @@ Probleme}\label{wichtige-np-vollstuxe4ndige-probleme}
 
 \end{frame}
 
-\begin{frame}{INDSET}
+\begin{frame}{Wichtige NP-vollständige Probleme}{INDSET}
 
 \begin{quote}
 Besitzt ein Graph $G$ mindestens $k$ paarweise nicht über eine Kante
@@ -588,7 +605,7 @@ beliebiger 3SAT-Instanzen zu Graphen:
 
 \end{frame}
 
-\begin{frame}{0/1 IPROG}
+\begin{frame}{Wichtige NP-vollständige Probleme}{0/1 IPROG}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -613,7 +630,7 @@ beliebiger 3SAT-Instanzen zu Graphen:
 
 \end{frame}
 
-\begin{frame}{Traveling Salesman (TSP)}
+\begin{frame}{Wichtige NP-vollständige Probleme}{Traveling Salesman (TSP)}
 
 \begin{quote}
 Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
@@ -640,7 +657,7 @@ Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
 
 \section{Andere Klassen}\label{andere-klassen}
 
-\begin{frame}{EXP und NEXP}
+\begin{frame}{Andere Klassen}{EXP und NEXP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -654,7 +671,7 @@ Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
 
 \end{frame}
 
-\begin{frame}{Platzbasierte}
+\begin{frame}{Andere Klassen}{Platzbasierte}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -696,7 +713,7 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Sonstige}
+\begin{frame}{Andere Klassen}{Sonstige}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -724,7 +741,7 @@ Es gilt:
 
 \section{Indizien}\label{indizien}
 
-\begin{frame}{P $\neq$ NP}
+\begin{frame}{Indizien}{P $\neq$ NP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -744,7 +761,7 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{coNP $\neq$ NP}
+\begin{frame}{Indizien}{coNP $\neq$ NP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -761,7 +778,7 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Resolution als Indiz für coNP $\neq$ NP}
+\begin{frame}{Indizien}{Resolution als Indiz für coNP $\neq$ NP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -785,7 +802,7 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Resolution Beispiel}
+\begin{frame}{Indizien}{Resolution Beispiel}
 
 \begin{figure}[htbp]
 \centering
@@ -794,7 +811,7 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Resolution als Indiz für coNP $\neq$ NP}
+\begin{frame}{Indizien}{Resolution als Indiz für coNP $\neq$ NP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -821,7 +838,7 @@ Es gilt:
 
 \section{Implikationen}\label{implikationen}
 
-\begin{frame}{Philosophisch}
+\begin{frame}{Implikationen}{Philosophisch}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -846,14 +863,14 @@ Es gilt:
     Insbesondere bei nichtdeterministischen TMs: Polyzeitreduktion
     praktisch nicht vorstellbar.
   \item
-    Alle Probleme in NP (TODO: P-vollständig?) wären vergleichbar
+    Alle Probleme in NP, die nicht auch in leichteren Klassen als P liegen, vergleichbar
     schwer, es gäbe keine Klasse NPI
   \end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Kryptographisch}
+\begin{frame}{Implikationen}{Kryptographisch}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -885,7 +902,7 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{coNP $\stackrel{?}{=}$ NP}
+\begin{frame}{Implikationen}{coNP $\stackrel{?}{=}$ NP}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -961,10 +978,9 @@ Es gilt:
 
 \end{frame}
 
-\section{Umgang mit NP-vollständigen
-Problemen}\label{umgang-mit-np-vollstuxe4ndigen-problemen}
+\section[Umgang]{Umgang mit NP-vollständigen Problemen}
 
-\begin{frame}
+\begin{frame}{Umgang mit NP-vollständigen Problemen}
 
 \begin{figure}[htbp]
 \centering
@@ -1033,58 +1049,49 @@ Problemen}\label{umgang-mit-np-vollstuxe4ndigen-problemen}
 
 \section{Quellenangaben}\label{quellenangaben}
 
-\begin{frame}
+\begin{frame}{Quellen}{Literatur}
+\begin{itemize}
+	\item „Aussagenlogik: Deduktion und Algorithmen“ von Hans Kleine Büning und Theodor Lettmann
+		%\url{https://books.google.de/books?id=6ZGoBgAAQBAJ&pg=PA150}
+	\item TODO: das im Kurz benutzte Buch
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Quellen}{Online}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  http://de.wikipedia.org/wiki/P\_\%28Komplexit\%C3\%A4tsklasse\%29
-\item
-  http://de.wikipedia.org/wiki/Turingmaschine
-\item
-  http://de.wikipedia.org/wiki/Polynomialzeit
-\item
-  https://complexityzoo.uwaterloo.ca/Complexity\_Zoo:P\#p
-\item
-  http://de.wikipedia.org/wiki/Lineare\_Optimierung
-\item
-  http://de.wikipedia.org/wiki/AKS-Primzahltest
-\item
-  http://de.wikipedia.org/wiki/Horn-Formel
-\item
-  http://de.wikipedia.org/wiki/Reduktion\_\%28Theoretische\_Informatik\%29
-\item
-  http://en.wikipedia.org/wiki/Co-NP
-\item
-  https://complexityzoo.uwaterloo.ca/Complexity\_Zoo:C\#conp
-\item
-  https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html
+	\item \url{http://de.wikipedia.org/wiki/}
+		\begin{itemize}
+			\item \url{P\_(Komplexitätsklasse)}
+			\item \url{Turingmaschine}
+			\item \url{Polynomialzeit}
+			\item \url{Lineare\_Optimierung}
+			\item \url{AKS-Primzahltest}
+			\item \url{Horn-Formel}
+			\item \url{Reduktion\_(Theoretische\_Informatik)}
+			\item \url{Satz\_von\_Ladner}
+			\item \url{Primfaktorzerlegung}
+			\item \url{NP-intermediate}
+		\end{itemize}
+	\item \url{http://en.wikipedia.org/wiki/Co-NP}
+	\item \url{https://complexityzoo.uwaterloo.ca/}
+		\begin{itemize}
+			\item \url{Complexity\_Zoo:P\#p}
+			\item \url{Complexity\_Zoo:C\#conp}
+		\end{itemize}
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Quellen}{Online}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Buch: Aussagenlogik: Deduktion und Algorithmen: Deduktion und
-  Algorithmen von Theodor Lettmann
-  (https://books.google.de/books?id=6ZGoBgAAQBAJ\&pg=PA150\&lpg=PA150\&dq=resolutionsbeweis+untere+schranke\&source=bl\&ots=wIW90vsapu\&sig=tGPO4iMYRVDXtZYi6jAepeKp0\_8\&hl=de\&sa=X\&ei=itQ4VazXNIXpaKm2gcAG\&ved=0CDYQ6AEwAw\#v=onepage\&q=resolutionsbeweis\%20untere\%20schranke\&f=false)
-\item
-  http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf
-\item
-  http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/46927-f97/slides/Lec4/sld033.htm
-\item
-  http://www.cosy.sbg.ac.at/\textasciitilde{}held/teaching/wiss\_arbeiten/slides\_02-03/kmrr.pdf
-\item
-  http://hackvalue.de/files/tsp.pdf
-\item
-  http://de.wikipedia.org/wiki/Satz\_von\_Ladner
-\item
-  http://de.wikipedia.org/wiki/Primfaktorzerlegung
-\item
-  http://en.wikipedia.org/wiki/NP-intermediate
+	\item \url{https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html}
+	\item \url{http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf}
+	\item \url{http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/46927-f97/slides/Lec4/sld033.htm}
+	\item \url{http://www.cosy.sbg.ac.at/~held/teaching/wiss\_arbeiten/slides\_02-03/kmrr.pdf}
+	\item \url{http://hackvalue.de/files/tsp.pdf}
+	\item \url{http://www.scottaaronson.com/blog/?p=1720}
 \end{itemize}
 
 \end{frame}
