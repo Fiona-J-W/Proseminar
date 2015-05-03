@@ -431,7 +431,7 @@ Umgang mit NP-vollständigen Problemen
 
 * Gibt es vielleicht bessere, nicht NP-schwere Modelierungen?
 
-![](http://imgs.xkcd.com/comics/travelling_salesman_problem.png)
+![](img/travelling_salesman_problem.png)
 
 <!-- xkcd 399-->
 
