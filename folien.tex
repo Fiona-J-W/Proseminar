@@ -76,10 +76,38 @@
 \begin{document}
 \frame{\titlepage}
 
+
+\section{Motivation}
+%\label{motivation}
+
+\begin{frame}{Motivation}
+	\begin{figure}
+		\centering
+		\includegraphics{img/Comic1.png}\\
+		{\small „I can't find an efficient algorithm, I guess I'm just to dumb.“}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Motivation}
+	\begin{figure}
+		\centering
+		\includegraphics{img/Comic2.png}\\
+		{\small „I can't find an efficient algorithm, because no such algorithm is possible.“}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Motivation}
+	\begin{figure}
+		\centering
+		\includegraphics{img/Comic3.png}\\
+		{\small „I can't find an efficient algorithm, but neither can all these famous people.“}
+	\end{figure}
+\end{frame}
+
+
 \begin{frame}{Themen}
 %\tableofcontents[hideallsubsections]
 %Sadly the default TOC is horribly broken regarding vertical space, so let's do it by hand:
-
 \begin{itemize}
 	\item Motivation
 	\item Einführung
@@ -94,30 +122,10 @@
 \end{itemize}
 \end{frame}
 
-\section{Motivation}
-%\label{motivation}
-
-\begin{frame}{Motivation}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Einführung/Wiederholung wichtiger Begrifflichkeiten und Methoden
-\item
-  Überblick über verschiedene Komplexitätsklassen
-\item
-  Vorstellung wichtiger Probleme
-\item
-  Bedeutung für die Praxis
-\end{itemize}
-
-\end{frame}
-
 
 \section{Einführung}\label{einfuxfchrung}
 
 \begin{frame}{Einführung}{Turingmaschine}
-
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
@@ -220,7 +228,7 @@
 \item
   Ähnlich der deterministischen TM
 \item
-  NDTM hat allerdings zwei Übergangsfunktionen $\delta_0$ und $\delta_1$
+  NDTM hat allerdings mehrere Übergangsfunktionen
 \item
   Endet eine Sequenz von Entscheidungen in $F$ gilt die Eingabe als
   akzeptiert
@@ -315,14 +323,6 @@
   $x$ ist eine Lösung, wenn es eine Sequenz von Entscheidungen gibt,
   sodass $\mathcal{M}$ in einem der aktzeptierenden Zustände ($F$) hält.
 
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    es gilt in diesem Fall $\mathcal{M}(x) = 1$
-  \end{itemize}
-\item
-  Gibt es keine Sequenz für die $\mathcal{M}$ in $F$ hält, gilt
-  $\mathcal{M}(x) = 0$
 \item
   Ursprüngliche Definition, deswegen auch NP (nondeterministic
   polynomial time)
@@ -523,7 +523,7 @@ Stephen Cook, Leonid Levin
   Sei $h$ eine neu eingeführte Hilfsvariable
 \item
   Dann ist $F_2 = (a \vee b \vee h) \wedge (\overline{h} \vee c \vee d)$
-  mit Lößung $L_2$ eine äquivalente Formel
+  mit Lösung $L_2$ eine äquivalente Formel
 \item
   Erfüllbarkeit ist äquivalent:
 
@@ -589,7 +589,7 @@ Stephen Cook, Leonid Levin
 \begin{frame}{Wichtige NP-vollständige Probleme}{INDSET}
 
 \begin{quote}
-Besitzt ein Graph $G$ mindestens $k$ paarweise nicht über eine Kante
+	Besitzt ein Graph $G$ mindestens $k$ paarweise nicht über eine Kante
 verbundene Knoten (=stabile Menge)?
 \end{quote}
 
@@ -663,6 +663,45 @@ Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
 
 \section{Andere Klassen}\label{andere-klassen}
 
+\begin{frame}{Andere Klassen}{NP-Intermediate}
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Gilt P $\neq$ NP so gibt es eine Klasse NP-Intermediate (NPI) für die
+  gilt:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $A \in$ NPI $\Leftrightarrow A \in$ NP, $A \notin$ P und $A$ ist
+    nicht NP-Schwer
+  \end{itemize}
+\item
+  Wurde von Richard Ladner 1975 bewiesen
+\item
+  Er konstruierte ein künstliches Problem welches unter der Annahme P
+  $\neq$ NP in NPI liegt
+\item
+  Es ist nicht sicher ob es ``natürliche'' Probleme in NPI gibt
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Andere Klassen}{Vermutete Probleme in NPI}
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Man vermutet, dass die Primfaktorzerlegung in NPI liegt
+\item
+  Bisher noch kein Algorithmus in Polynomialzeit gefunden
+\item
+  Noch kein Beweis für NP-Schwere
+\item
+  Aktuelle Kryptographie baut darauf auf (RSA)
+\end{itemize}
+\end{frame}
+
+
+
 \begin{frame}{Andere Klassen}{EXP und NEXP}
 
 \begin{itemize}
@@ -719,51 +758,13 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Andere Klassen}{NP-Intermediate}
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Gilt P $\neq$ NP so gibt es eine Klasse NP-Intermediate (NPI) für die
-  gilt:
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    $A \in$ NPI $\Leftrightarrow A \in$ NP, $A \notin$ P und $A$ ist
-    nicht NP-Schwer
-  \end{itemize}
-\item
-  Wurde von Richard Ladner 1975 bewiesen
-\item
-  Er konstruierte ein künstliches Problem welches unter der Annahme P
-  $\neq$ NP in NPI liegt
-\item
-  Es ist nicht sicher ob es ``natürliche'' Probleme in NPI gibt
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Andere Klassen}{Vermutete Probleme in NPI}
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Man vermutet, dass die Primfaktorzerlegung in NPI liegt
-\item
-  Bisher noch kein Algorithmus in Polynomialzeit gefunden
-\item
-  Noch kein Beweis für NP-Schwere
-\item
-  Aktuelle Kryptographie baut darauf auf (RSA)
-\end{itemize}
-\end{frame}
-
-
 \begin{frame}{Andere Klassen}{Sonstige}
 \begin{itemize}
 	\item PP, BPP
 		\begin{itemize}
 			\item Propabilistische Klassen
 		\end{itemize}
-	\item BQP, QMA, \ldots{}
+	\item BQP (Bounded Error Quantum Polynomial), QMA (Quantum Merlin Arthur), \ldots{}
 		\begin{itemize}
 			\item Analoge Klassen für Quantencomputer
 		\end{itemize}
@@ -861,8 +862,7 @@ Es gilt:
   \itemsep1pt\parskip0pt\parsep0pt
   \item
     mittels Resolution ist coNP = NP nicht beweisbar
-  \item
-    $\Rightarrow$ Indiz für coNP $\neq$ NP
+  \item[$\Rightarrow$] Indiz für coNP $\neq$ NP
   \end{itemize}
 \end{itemize}
 
@@ -918,7 +918,7 @@ Es gilt:
     Heutige Krypto meist nicht NP-vollständig (Faktorisierung in NPI
     vermutet)
   \item
-    Quantencomputer sind hier eine \textbf{viel} realere Bedrohung.
+    Quantencomputer sind hier eine \textbf{viel} realere Bedrohung.\\
     ($\rightarrow$ Shor-Algorithmus)
   \end{itemize}
 \item
@@ -1044,7 +1044,7 @@ Es gilt:
 \begin{itemize}
 	\item „Aussagenlogik: Deduktion und Algorithmen“ von Hans Kleine Büning und Theodor Lettmann
 		%\url{https://books.google.de/books?id=6ZGoBgAAQBAJ&pg=PA150}
-	\item TODO: das im Kurz benutzte Buch
+	\item „Computational Complexity: A Modern Approach“ von Sanjeev Arora und Boaz Barak
 \end{itemize}
 \end{frame}
 
@@ -1053,22 +1053,17 @@ Es gilt:
 \begin{itemize}
 	\item \url{http://de.wikipedia.org/wiki/}
 		\begin{itemize}
-			\item \url{P\_(Komplexitätsklasse)}
-			\item \url{Turingmaschine}
-			\item \url{Polynomialzeit}
-			\item \url{Lineare\_Optimierung}
 			\item \url{AKS-Primzahltest}
-			\item \url{Horn-Formel}
-			\item \url{Reduktion\_(Theoretische\_Informatik)}
 			\item \url{Satz\_von\_Ladner}
-			\item \url{Primfaktorzerlegung}
 			\item \url{NP-intermediate}
 		\end{itemize}
-	\item \url{http://en.wikipedia.org/wiki/Co-NP}
 	\item \url{https://complexityzoo.uwaterloo.ca/}
 		\begin{itemize}
-			\item \url{Complexity\_Zoo:P\#p}
+			\item \url{Complexity\_Zoo:B\#bqp}
+			\item \url{Complexity\_Zoo:B\#bpp}
 			\item \url{Complexity\_Zoo:C\#conp}
+			\item \url{Complexity\_Zoo:P\#p}
+			\item \url{Complexity\_Zoo:Q\#qma}
 		\end{itemize}
 \end{itemize}
 \end{frame}
@@ -1086,6 +1081,7 @@ Es gilt:
 
 \begin{frame}{Quellen}{Abbildungen}
 \begin{itemize}
+	\item Motivations-Comics: „Computers and Intractability -- A Guide to the Theory of NP-Completeness“ von Michael R. Garey und David S. Johnson
 	\item Lego-Turingmaschine: \url{http://www.legoturingmachine.org}
 	\item Stephen Cook (CC-BY-SA 3.0, Jiří Janíček):
 		\url{https://commons.wikimedia.org/wiki/File:Prof.Cook.jpg}
