@@ -268,7 +268,7 @@
   \item
     PRIMES (AKS-Primzahltest)
   \item
-    HORNSAT
+    SET-COVER
   \end{itemize}
 \end{itemize}
 
@@ -719,31 +719,57 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Andere Klassen}{Sonstige}
-
+\begin{frame}{Andere Klassen}{NP-Intermediate}
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  NPI (NP-Intermediate)
+  Gilt P $\neq$ NP so gibt es eine Klasse NP-Intermediate (NPI) für die
+  gilt:
 
   \begin{itemize}
   \itemsep1pt\parskip0pt\parsep0pt
   \item
-    NP-Probleme, weder in P, noch NP-vollständig
-  \item
-    existiert wenn P $\neq$ NP
+    $A \in$ NPI $\Leftrightarrow A \in$ NP, $A \notin$ P und $A$ ist
+    nicht NP-Schwer
   \end{itemize}
 \item
-  BQP, QMA, \ldots{}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    Analoge Klassen für Quantencomputer
-  \end{itemize}
+  Wurde von Richard Ladner 1975 bewiesen
+\item
+  Er konstruierte ein künstliches Problem welches unter der Annahme P
+  $\neq$ NP in NPI liegt
+\item
+  Es ist nicht sicher ob es ``natürliche'' Probleme in NPI gibt
 \end{itemize}
-
 \end{frame}
+
+\begin{frame}{Andere Klassen}{Vermutete Probleme in NPI}
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Man vermutet, dass die Primfaktorzerlegung in NPI liegt
+\item
+  Bisher noch kein Algorithmus in Polynomialzeit gefunden
+\item
+  Noch kein Beweis für NP-Schwere
+\item
+  Aktuelle Kryptographie baut darauf auf (RSA)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Andere Klassen}{Sonstige}
+\begin{itemize}
+	\item PP, BPP
+		\begin{itemize}
+			\item Propabilistische Klassen
+		\end{itemize}
+	\item BQP, QMA, \ldots{}
+		\begin{itemize}
+			\item Analoge Klassen für Quantencomputer
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
 
 \section{Indizien}\label{indizien}
 
@@ -943,46 +969,6 @@ Es gilt:
 
 \end{frame}
 
-\begin{frame}{Probleme zwischen P und NP-Vollständig}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Gilt P $\neq$ NP so gibt es eine Klasse NP-intermediate (NPI) für die
-  gilt:
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    $A \in$ NPI $\Leftrightarrow A \in$ NP, $A \notin$ P und $A$ ist
-    nicht NP-Schwer
-  \end{itemize}
-\item
-  Wurde von Richard Ladner 1975 bewiesen
-\item
-  Er konstruierte ein künstliches Problem welches unter der Annahme P
-  $\neq$ NP in NPI liegt
-\item
-  Es ist nicht sicher ob es ``natürliche'' Probleme in NPI gibt
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Vermutete Probleme in NPI}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Man vermutet, dass die Primfaktorzerlegung in NPI liegt
-\item
-  Bisher noch kein Algorithmus in Polynomialzeit gefunden
-\item
-  Noch kein Beweis für NP-Schwere
-\item
-  Aktuelle Kryptographie baut darauf auf (RSA)
-\end{itemize}
-
-\end{frame}
 
 \section[Umgang]{Umgang mit NP-vollständigen Problemen}
 
