@@ -62,6 +62,13 @@
 
 \usepackage{hyperref}
 
+\usepackage[absolute,overlay]{textpos}
+\newcommand{\source}[1]{\begin{textblock*}{4cm}(8.7cm,8.6cm)
+    \begin{beamercolorbox}[ht=0.5cm,right]{framesource}
+        \usebeamerfont{framesource}\usebeamercolor[fg]{framesource} Quelle: {#1}
+    \end{beamercolorbox}
+\end{textblock*}}
+
 \title{Die P $\neq$ NP-Vermutung}
 \author{Adrian Hein, Florian Weber}
 \date{6. Mai 2015}
@@ -170,7 +177,7 @@
 \begin{figure}[htbp]
 \centering
 \includegraphics{img/lego_tm.png}
-\caption{http://www.legoturingmachine.org}
+
 \end{figure}
 
 \end{frame}
@@ -382,9 +389,9 @@
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{img/cook_levin.png}
-\caption{Stephen Cook (CC-BY-SA 3.0, Jiří Janíček), Leonid Levin
-(CC-BY-SA 3.0, Sergio01)}
+\includegraphics{img/cook_levin.png}\\
+
+Stephen Cook, Leonid Levin
 \end{figure}
 
 \end{frame}
@@ -575,7 +582,6 @@
 \begin{figure}[htbp]
 \centering
 \includegraphics{img/xkcd_np_complete_big.png}
-\caption{CC-BY-NC 2.5, Randall Munroe, https://xkcd.com/287/}
 \end{figure}
 
 \end{frame}
@@ -819,7 +825,7 @@ Es gilt:
   1985 bewies Haken eine untere Schranke für die Größe des
   Resolutionsbeweises für das Taubenschlagprinzip
 \item
-  Diese ist $(1.49^{0.01})^n = (1,00399572)^n$ und unabhängig vom
+  Diese ist $(1.49^{0.01})^n \approx (1,004)^n$ und unabhängig vom
   gewählten Algorithmus
 \item
   Aufbauend auf Hakens Beweis wurden exponentielle untere Schranken auch
@@ -985,7 +991,6 @@ Es gilt:
 \begin{figure}[htbp]
 \centering
 \includegraphics{img/dont_panic.png}
-\caption{http://everfalling.deviantart.com/art/DON-T-PANIC-15975789}
 \end{figure}
 
 \end{frame}
@@ -1080,11 +1085,9 @@ Es gilt:
 			\item \url{Complexity\_Zoo:C\#conp}
 		\end{itemize}
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}{Quellen}{Online}
-
 \begin{itemize}
 	\item \url{https://homepages.uni-tuebingen.de//student/monika.gehweiler/Applets/html/resolutionIndex.html}
 	\item \url{http://www.ti.inf.ethz.ch/ew/lehre/extremal04/raemy.pdf}
@@ -1093,7 +1096,19 @@ Es gilt:
 	\item \url{http://hackvalue.de/files/tsp.pdf}
 	\item \url{http://www.scottaaronson.com/blog/?p=1720}
 \end{itemize}
+\end{frame}
 
+\begin{frame}{Quellen}{Abbildungen}
+\begin{itemize}
+	\item Lego-Turingmaschine: \url{http://www.legoturingmachine.org}
+	\item Stephen Cook (CC-BY-SA 3.0, Jiří Janíček):
+		\url{https://commons.wikimedia.org/wiki/File:Prof.Cook.jpg}
+	\item Leonid Levin (CC-BY-SA 3.0, Sergio01):
+		\url{https://commons.wikimedia.org/wiki/File:LeonidLevin2010.jpg}
+	\item „My Hobby“ (CC-BY-NC 2.5, Randall Munroe): \url{https://xkcd.com/287/}
+	\item „Don't Panic“: \url{http://everfalling.deviantart.com/art/DON-T-PANIC-15975789}
+	\item „Traveling Salesman“ (CC-BY-NC 2.5, Randall Munroe): \url{https://xkcd.com/399/}
+\end{itemize}
 \end{frame}
 
 \end{document}
