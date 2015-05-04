@@ -109,7 +109,6 @@
 %\tableofcontents[hideallsubsections]
 %Sadly the default TOC is horribly broken regarding vertical space, so let's do it by hand:
 \begin{itemize}
-	\item Motivation
 	\item Einführung
 	\item Das Cook-Levin Theorem
 	\item Wichtige NP-vollständige Probleme
@@ -201,11 +200,11 @@
   \begin{itemize}
   \itemsep1pt\parskip0pt\parsep0pt
   \item
-    $Q$, die endlichen Zustandsmenge
+    $Q$, der endlichen Zustandsmenge
   \item
-    $\Sigma$, das endlichen Eingabealphabet
+    $\Sigma$, dem endlichen Eingabealphabet
   \item
-    $\Gamma$, das endliche Bandalphabet und es gilt
+    $\Gamma$, dem endliche Bandalphabet und es gilt
     $\Sigma \subset \Gamma$
   \item
     $\delta\colon (Q \setminus F)\times \Gamma \to Q \times \Gamma \times \{L, 0, R\}$,
@@ -213,10 +212,10 @@
   \item
     $q_0 \in Q$, dem Anfangszustand
   \item
-    $\square \in \Gamma\setminus\Sigma$, das leere Feld
-  \item
-    $F \subseteq Q$, die Menge der akzeptierenden Zustände
+    $F \subseteq Q$, der Menge der akzeptierenden Zustände
   \end{itemize}
+  \item
+    $\square \in \Gamma\setminus\Sigma$ bezeichnet das leere Feld
 \end{itemize}
 
 \end{frame}
@@ -245,13 +244,27 @@
 \item
   Hat anstatt einem Band mehrere mit jeweils einem Lese- und
   Schreibkopf\\
-\scalebox{0.195}{\includegraphics{img/TM0.png}}
+\begin{figure}[htbp]
+\begin{minipage}{0.4\textwidth}
+\centering
+\scalebox{0.65}{\includegraphics{img/TM0.png}}
+\end{minipage}
+\begin{minipage}{0.1\textwidth}
+\centering
 $\Rightarrow$
-\scalebox{0.3}{\includegraphics{img/TM1.png}}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\centering
+\scalebox{0.7}{\includegraphics{img/TM1.png}}
+\end{minipage}
+\end{figure}
+
 \item
   Kann durch eine TM mit einem Band simuliert
   werden\\
+\item[]
 \scalebox{0.7}{\includegraphics{img/TM2.png}}
+
 \item
   Mehrband TMs sind genauso mächtig wie normale TMs aber evt.
   anschaulicher
@@ -637,32 +650,22 @@ beliebiger 3SAT-Instanzen zu Graphen:
     werden durch $u_1 + (1 - u_2) + (1 - u_3) \geq 1$
   \end{itemize}
 \end{itemize}
-
 \end{frame}
+
 
 \begin{frame}{Wichtige NP-vollständige Probleme}{Traveling Salesman (TSP)}
 
+\begin{figure}[htbp]
+\begin{minipage}{0.58\textwidth}
 \begin{quote}
 Gibt es zu $n$ Städten einen Rundweg der kürzer ist als $b$?
 \end{quote}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  In NP: die Reihenfolge der Städte kann als Zertifikat betrachtet
-  werden
-\item
-  NP-Vollständig: HAMILTON $\preceq$ TSP, indem man jede Kante des
-  Graphs mit 1 gewichtet
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    Gibt es einen Pfad der Länge $l = |V|+1$ so hat der Graph einen
-    Hamiltonkreis
-  \end{itemize}
-\end{itemize}
-
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\centering
+\includegraphics{img/tsp.png}
+\end{minipage}
+\end{figure}
 \end{frame}
 
 \section{Andere Klassen}\label{andere-klassen}
